@@ -1,10 +1,11 @@
 import React from "react";
-import { Button, Text, View } from "react-native";
+import { Button, StatusBar, Text, View } from "react-native";
 import { StackNavigationProp } from "@react-navigation/stack";
+import { styles } from "../styles/styles";
 
 const HomeScreen = () => {
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+    <View style={styles.container}>
       <Text>Welcome to the Home Screen!</Text>
     </View>
   );

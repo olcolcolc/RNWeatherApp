@@ -7,4 +7,7 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "#121212",
   },
+  text: {
+    color: "white",
+  },
 });

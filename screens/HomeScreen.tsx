@@ -7,11 +7,11 @@ import { observer } from "mobx-react-lite";
 import { cityStore } from "../stores/CityStore";
 import { StatusBar } from "expo-status-bar";
 import { Ionicons } from "@expo/vector-icons";
-import WeatherIcons from "../components/WeatherIcon";
 import WeatherIcon from "../components/WeatherIcon";
-import WeekWeather from "../components/WeekWeatherElement";
 import { ScrollView } from "react-native-gesture-handler";
 import { container } from "../styles/containers";
+import WeeklyForecastElement from "../components/WeeklyForecastElement";
+import Header from "../components/Header";
 
 const HomeScreen = observer(() => {
   const today = new Date();
@@ -45,27 +45,7 @@ const HomeScreen = observer(() => {
         <StatusBar style="light" />
 
         {/* HEADER */}
-        <View style={container.header}>
-          {/* CITY */}
-          {cityStore.loading ? (
-            <Text style={text.light}>Loading...</Text>
-          ) : cityStore.error ? (
-            <Text style={text.light}>Error: {cityStore.error}</Text>
-          ) : (
-            <>
-              <Text style={text.light}>{cityStore.city}</Text>
-
-              {/* DATE */}
-              <Text style={text.dark}>
-                Today,{" "}
-                {today.toLocaleDateString(undefined, {
-                  month: "long",
-                  day: "numeric",
-                })}
-              </Text>
-            </>
-          )}
-        </View>
+        <Header />
 
         {/* TODAY'S WEATHER */}
         <View style={container.container}>
@@ -99,12 +79,12 @@ const HomeScreen = observer(() => {
           contentContainerStyle={{ paddingHorizontal: 15 }}
           showsHorizontalScrollIndicator={false}
         >
-          <WeekWeather />
-          <WeekWeather />
-          <WeekWeather />
-          <WeekWeather />
-          <WeekWeather />
-          <WeekWeather />
+          <WeeklyForecastElement />
+          <WeeklyForecastElement />
+          <WeeklyForecastElement />
+          <WeeklyForecastElement />
+          <WeeklyForecastElement />
+          <WeeklyForecastElement />
         </ScrollView>
       </SafeAreaView>
     </View>

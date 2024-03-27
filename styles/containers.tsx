@@ -1,6 +1,6 @@
 import { StyleSheet, TextStyle } from "react-native";
 
-export const styles = StyleSheet.create({
+export const container = StyleSheet.create({
   mainContainer: {
     flex: 1,
     backgroundColor: "black",
@@ -45,22 +45,5 @@ export const styles = StyleSheet.create({
     opacity: 0.3,
     borderRadius: 50,
     padding: 10,
-  },
-  lightText: {
-    color: "white",
-    fontSize: 18,
-  },
-  darkText: {
-    color: "grey",
-    fontSize: 18,
-  },
-  iconDetails: {
-    color: "white",
-    fontSize: 24,
-    textAlign: "center",
-  },
-  errorText: {
-    color: "red",
-    fontSize: 18,
   },
 });

@@ -4,15 +4,15 @@ export const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     backgroundColor: "black",
-    borderColor: "red",
-    borderWidth: 1,
   },
   container: {
     justifyContent: "center",
     alignItems: "center",
-    height: "50%",
     borderColor: "red",
+    padding: 44,
     borderWidth: 1,
+    marginBottom: 20,
+    marginVertical: 50,
   },
   detailsContainer: {
     justifyContent: "space-around",
@@ -20,18 +20,25 @@ export const styles = StyleSheet.create({
     padding: 24,
     borderColor: "red",
     borderWidth: 1,
+    marginBottom: 20,
   },
-  footer: {
+  weekWeatherElement: {
+    alignItems: "center",
     padding: 24,
-    backgroundColor: "inherit",
-    borderColor: "red",
-    borderWidth: 1,
+    marginRight: 16,
+    marginBottom: 4,
+    color: "white",
+    height: 120,
+    justifyContent: "space-between",
+    backgroundColor: "grey",
+    borderRadius: 20,
   },
   header: {
     padding: 24,
     backgroundColor: "inherit",
     borderColor: "red",
     borderWidth: 1,
+    marginBottom: 20,
   },
   input: {
     backgroundColor: "lightgrey",
@@ -47,7 +54,11 @@ export const styles = StyleSheet.create({
     color: "grey",
     fontSize: 18,
   },
-  iconDetails: { color: "white", fontSize: 24, marginHorizontal: 10 },
+  iconDetails: {
+    color: "white",
+    fontSize: 24,
+    textAlign: "center",
+  },
   errorText: {
     color: "red",
     fontSize: 18,

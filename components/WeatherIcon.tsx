@@ -3,8 +3,9 @@ import { Ionicons } from "@expo/vector-icons";
 import { StyleSheet } from "react-native";
 import { styles } from "../styles/styles";
 
-interface WeatherIconsProps {
+interface WeatherIconProps {
   name: "sunny" | "cloudy" | "rainy" | string;
+  size: "today" | "weekday";
 }
 
 type IconName =
@@ -13,9 +14,10 @@ type IconName =
   | "rainy-outline"
   | "help-circle-outline";
 
-const WeatherIcons: React.FC<WeatherIconsProps> = ({ name }) => {
+const WeatherIcon: React.FC<WeatherIconProps> = ({ name, size }) => {
   let iconName: IconName;
   let iconColor: string;
+  let iconSize: number;
 
   switch (name) {
     case "sunny":
@@ -35,7 +37,18 @@ const WeatherIcons: React.FC<WeatherIconsProps> = ({ name }) => {
       iconColor = "black";
   }
 
-  return <Ionicons name={iconName} size={160} color={iconColor} />;
+  switch (size) {
+    case "today":
+      iconSize = 160;
+      break;
+    case "weekday":
+      iconSize = 40;
+      break;
+    default:
+      iconSize = 24; // Default size if size prop is not provided
+  }
+
+  return <Ionicons name={iconName} size={iconSize} color={iconColor} />;
 };
 
-export default WeatherIcons;
+export default WeatherIcon;

@@ -9,6 +9,8 @@ import { StatusBar } from "expo-status-bar";
 import { Ionicons } from "@expo/vector-icons";
 import WeatherIcons from "../components/WeatherIcon";
 import WeatherIcon from "../components/WeatherIcon";
+import WeekWeather from "../components/WeekWeatherElement";
+import { ScrollView } from "react-native-gesture-handler";
 
 const HomeScreen = observer(() => {
   const today = new Date();
@@ -37,7 +39,7 @@ const HomeScreen = observer(() => {
 
   return (
     <View style={styles.mainContainer}>
-      <SafeAreaView>
+      <SafeAreaView style={{ justifyContent: "space-between" }}>
         {/* StatusBar */}
         <StatusBar style="light" />
 
@@ -66,11 +68,10 @@ const HomeScreen = observer(() => {
 
         {/* TODAY'S WEATHER */}
         <View style={styles.container}>
-          <WeatherIcon name="rainy" />
+          <WeatherIcon name="rainy" size="today" />
           <Text style={styles.lightText}>24°C</Text>
           <Text style={styles.darkText}>Sunny</Text>
         </View>
-        <View style={styles.footer}></View>
 
         {/* WEATHER DETAILS */}
         <View style={styles.detailsContainer}>
@@ -102,7 +103,20 @@ const HomeScreen = observer(() => {
             <Text style={styles.lightText}>6 AM</Text>
           </View>
         </View>
-        <View style={styles.footer}></View>
+
+        {/* WEEK WEATHER */}
+        <ScrollView
+          horizontal
+          contentContainerStyle={{ paddingHorizontal: 15 }}
+          showsHorizontalScrollIndicator={false}
+        >
+          <WeekWeather />
+          <WeekWeather />
+          <WeekWeather />
+          <WeekWeather />
+          <WeekWeather />
+          <WeekWeather />
+        </ScrollView>
       </SafeAreaView>
     </View>
   );

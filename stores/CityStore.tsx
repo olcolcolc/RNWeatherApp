@@ -3,6 +3,7 @@ import { makeAutoObservable } from "mobx";
 class CityStore {
   city = "";
   error = "";
+  loading = false;
 
   constructor() {
     makeAutoObservable(this);
@@ -14,6 +15,10 @@ class CityStore {
 
   setError = (error: string) => {
     this.error = error;
+  };
+
+  setLoading = (loading: boolean) => {
+    this.loading = loading;
   };
 }
 

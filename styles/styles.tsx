@@ -1,9 +1,29 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, TextStyle } from "react-native";
 
 export const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     backgroundColor: "black",
+    borderColor: "red",
+    borderWidth: 1,
+  },
+  container: {
+    justifyContent: "center",
+    alignItems: "center",
+    height: "50%",
+    borderColor: "red",
+    borderWidth: 1,
+  },
+  detailsContainer: {
+    justifyContent: "space-around",
+    flexDirection: "row",
+    padding: 24,
+    borderColor: "red",
+    borderWidth: 1,
+  },
+  footer: {
+    padding: 24,
+    backgroundColor: "inherit",
     borderColor: "red",
     borderWidth: 1,
   },
@@ -27,6 +47,7 @@ export const styles = StyleSheet.create({
     color: "grey",
     fontSize: 18,
   },
+  iconDetails: { color: "white", fontSize: 24, marginHorizontal: 10 },
   errorText: {
     color: "red",
     fontSize: 18,

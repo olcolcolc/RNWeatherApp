@@ -5,17 +5,22 @@ import * as Location from "expo-location";
 import { styles } from "../styles/styles";
 import { observer } from "mobx-react-lite";
 import { cityStore } from "../stores/CityStore";
-import { TextInput } from "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
+import { Ionicons } from "@expo/vector-icons";
+import WeatherIcons from "../components/WeatherIcon";
+import WeatherIcon from "../components/WeatherIcon";
 
 const HomeScreen = observer(() => {
   const today = new Date();
 
   useEffect(() => {
     (async () => {
+      cityStore.setLoading(true);
+
       let { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== "granted") {
         cityStore.setError("Permission to access location was denied");
+        cityStore.setLoading(false);
         return;
       }
 
@@ -23,9 +28,10 @@ const HomeScreen = observer(() => {
         let location = await Location.getCurrentPositionAsync({});
         let reverseCode = await Location.reverseGeocodeAsync(location.coords);
         cityStore.setCity(reverseCode[0].city ?? "");
-      } catch (error: any) {
-        cityStore.setError(error.message);
+      } catch (error: unknown) {
+        cityStore.setError((error as Error).message);
       }
+      cityStore.setLoading(false);
     })();
   }, []);
 
@@ -34,13 +40,19 @@ const HomeScreen = observer(() => {
       <SafeAreaView>
         {/* StatusBar */}
         <StatusBar style="light" />
+
         {/* HEADER */}
         <View style={styles.header}>
-          {cityStore.error ? (
+          {/* CITY */}
+          {cityStore.loading ? (
+            <Text style={styles.lightText}>Loading...</Text>
+          ) : cityStore.error ? (
             <Text style={styles.lightText}>Error: {cityStore.error}</Text>
           ) : (
             <>
               <Text style={styles.lightText}>{cityStore.city}</Text>
+
+              {/* DATE */}
               <Text style={styles.darkText}>
                 Today,{" "}
                 {today.toLocaleDateString(undefined, {
@@ -51,8 +63,46 @@ const HomeScreen = observer(() => {
             </>
           )}
         </View>
-        {/* SEARCH CITY INPUT */}
-        <TextInput style={styles.input} placeholder="City Search"></TextInput>
+
+        {/* TODAY'S WEATHER */}
+        <View style={styles.container}>
+          <WeatherIcon name="rainy" />
+          <Text style={styles.lightText}>24°C</Text>
+          <Text style={styles.darkText}>Sunny</Text>
+        </View>
+        <View style={styles.footer}></View>
+
+        {/* WEATHER DETAILS */}
+        <View style={styles.detailsContainer}>
+          {/* WIND */}
+          <View>
+            <Ionicons
+              name="leaf-outline"
+              size={24}
+              style={styles.iconDetails}
+            />
+            <Text style={styles.lightText}>22 km</Text>
+          </View>
+          {/* HUMIDITY */}
+          <View>
+            <Ionicons
+              name="water-outline"
+              size={24}
+              style={styles.iconDetails}
+            />
+            <Text style={styles.lightText}>23 %</Text>
+          </View>
+          {/* SUNRISE */}
+          <View>
+            <Ionicons
+              name="sunny-outline"
+              size={24}
+              style={styles.iconDetails}
+            />
+            <Text style={styles.lightText}>6 AM</Text>
+          </View>
+        </View>
+        <View style={styles.footer}></View>
       </SafeAreaView>
     </View>
   );

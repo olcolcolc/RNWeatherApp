@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import * as Location from "expo-location";
-import { styles } from "../styles/styles";
+import { text } from "../styles/texts";
 import { observer } from "mobx-react-lite";
 import { cityStore } from "../stores/CityStore";
 import { StatusBar } from "expo-status-bar";
@@ -11,6 +11,7 @@ import WeatherIcons from "../components/WeatherIcon";
 import WeatherIcon from "../components/WeatherIcon";
 import WeekWeather from "../components/WeekWeatherElement";
 import { ScrollView } from "react-native-gesture-handler";
+import { container } from "../styles/containers";
 
 const HomeScreen = observer(() => {
   const today = new Date();
@@ -38,24 +39,24 @@ const HomeScreen = observer(() => {
   }, []);
 
   return (
-    <View style={styles.mainContainer}>
+    <View style={container.mainContainer}>
       <SafeAreaView style={{ justifyContent: "space-between" }}>
         {/* StatusBar */}
         <StatusBar style="light" />
 
         {/* HEADER */}
-        <View style={styles.header}>
+        <View style={container.header}>
           {/* CITY */}
           {cityStore.loading ? (
-            <Text style={styles.lightText}>Loading...</Text>
+            <Text style={text.light}>Loading...</Text>
           ) : cityStore.error ? (
-            <Text style={styles.lightText}>Error: {cityStore.error}</Text>
+            <Text style={text.light}>Error: {cityStore.error}</Text>
           ) : (
             <>
-              <Text style={styles.lightText}>{cityStore.city}</Text>
+              <Text style={text.light}>{cityStore.city}</Text>
 
               {/* DATE */}
-              <Text style={styles.darkText}>
+              <Text style={text.dark}>
                 Today,{" "}
                 {today.toLocaleDateString(undefined, {
                   month: "long",
@@ -67,40 +68,28 @@ const HomeScreen = observer(() => {
         </View>
 
         {/* TODAY'S WEATHER */}
-        <View style={styles.container}>
+        <View style={container.container}>
           <WeatherIcon name="rainy" size="today" />
-          <Text style={styles.lightText}>24°C</Text>
-          <Text style={styles.darkText}>Sunny</Text>
+          <Text style={text.light}>24°C</Text>
+          <Text style={text.dark}>Sunny</Text>
         </View>
 
         {/* WEATHER DETAILS */}
-        <View style={styles.detailsContainer}>
+        <View style={container.detailsContainer}>
           {/* WIND */}
           <View>
-            <Ionicons
-              name="leaf-outline"
-              size={24}
-              style={styles.iconDetails}
-            />
-            <Text style={styles.lightText}>22 km</Text>
+            <Ionicons name="leaf-outline" size={24} style={text.iconDetails} />
+            <Text style={text.light}>22 km</Text>
           </View>
           {/* HUMIDITY */}
           <View>
-            <Ionicons
-              name="water-outline"
-              size={24}
-              style={styles.iconDetails}
-            />
-            <Text style={styles.lightText}>23 %</Text>
+            <Ionicons name="water-outline" size={24} style={text.iconDetails} />
+            <Text style={text.light}>23 %</Text>
           </View>
           {/* SUNRISE */}
           <View>
-            <Ionicons
-              name="sunny-outline"
-              size={24}
-              style={styles.iconDetails}
-            />
-            <Text style={styles.lightText}>6 AM</Text>
+            <Ionicons name="sunny-outline" size={24} style={text.iconDetails} />
+            <Text style={text.light}>6 AM</Text>
           </View>
         </View>
 

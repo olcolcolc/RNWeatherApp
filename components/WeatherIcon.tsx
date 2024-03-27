@@ -1,7 +1,7 @@
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { StyleSheet } from "react-native";
-import { styles } from "../styles/styles";
+import { styles } from "../styles/texts";
 
 interface WeatherIconProps {
   name: "sunny" | "cloudy" | "rainy" | string;

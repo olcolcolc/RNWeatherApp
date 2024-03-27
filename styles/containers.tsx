@@ -35,6 +35,7 @@ export const container = StyleSheet.create({
   },
   header: {
     padding: 24,
+    height: 100,
     backgroundColor: "inherit",
     borderColor: "red",
     borderWidth: 1,

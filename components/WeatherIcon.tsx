@@ -1,7 +1,7 @@
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { StyleSheet } from "react-native";
-import { styles } from "../styles/texts";
+import { text } from "../styles/texts";
 
 interface WeatherIconProps {
   name: "sunny" | "cloudy" | "rainy" | string;
@@ -45,10 +45,17 @@ const WeatherIcon: React.FC<WeatherIconProps> = ({ name, size }) => {
       iconSize = 40;
       break;
     default:
-      iconSize = 24; // Default size if size prop is not provided
+      iconSize = 24;
   }
 
-  return <Ionicons name={iconName} size={iconSize} color={iconColor} />;
+  return (
+    <Ionicons
+      name={iconName}
+      size={iconSize}
+      color={iconColor}
+      style={size === "weekday" ? undefined : text.neon}
+    />
+  );
 };
 
 export default WeatherIcon;

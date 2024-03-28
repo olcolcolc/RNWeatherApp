@@ -7,7 +7,7 @@ import WeatherIcon from "./WeatherIcon";
 const WeeklyForecastElement: React.FC = () => {
   return (
     <View style={container.weekWeatherElement}>
-      <WeatherIcon name="rainy" size="weekday" />
+      <WeatherIcon name="sunny" size="weekday" />
       <Text style={text.light}>22 °C</Text>
     </View>
   );

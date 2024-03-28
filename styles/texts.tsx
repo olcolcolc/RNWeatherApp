@@ -18,4 +18,10 @@ export const text = StyleSheet.create({
     color: "red",
     fontSize: 18,
   },
+  neon: {
+    textShadowColor: "#D0F0C0",
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 10,
+    fontWeight: "bold",
+  },
 });

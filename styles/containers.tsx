@@ -8,9 +8,7 @@ export const container = StyleSheet.create({
   container: {
     justifyContent: "center",
     alignItems: "center",
-    borderColor: "red",
-    padding: 44,
-    borderWidth: 1,
+    padding: 10,
     marginBottom: 20,
     marginVertical: 50,
   },
@@ -18,8 +16,6 @@ export const container = StyleSheet.create({
     justifyContent: "space-around",
     flexDirection: "row",
     padding: 24,
-    borderColor: "red",
-    borderWidth: 1,
     marginBottom: 20,
   },
   weekWeatherElement: {
@@ -37,8 +33,6 @@ export const container = StyleSheet.create({
     padding: 24,
     height: 100,
     backgroundColor: "inherit",
-    borderColor: "red",
-    borderWidth: 1,
     marginBottom: 20,
   },
   input: {

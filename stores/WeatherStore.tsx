@@ -4,10 +4,18 @@ import { cityStore } from "../stores/CityStore";
 import axios from "axios";
 
 interface WeatherData {
-  main?: {
-    temp: number;
+  current?: {
+    temp_c: number;
   };
 }
+
+interface ForecastEndpointParams {
+  days: number;
+  cityName: string;
+}
+
+const forecastEndpoint = (params: ForecastEndpointParams) =>
+  `http://api.weatherapi.com/v1/forecast.json?key=${WEATHER_API_KEY}&q=${params.cityName}&${params.days}=1&aqi=no&alerts=no`;
 
 class WeatherStore {
   weatherData: WeatherData | null = null;
@@ -33,9 +41,8 @@ class WeatherStore {
   };
 
   setTempCelsius = () => {
-    if (this.weatherData && this.weatherData.main) {
-      const main = this.weatherData.main;
-      this.tempCelsius = (main.temp - 273.15).toFixed(0);
+    if (this.weatherData && this.weatherData.current) {
+      this.tempCelsius = this.weatherData.current.temp_c.toFixed(0);
     } else {
       this.tempCelsius = null;
     }
@@ -55,12 +62,18 @@ class WeatherStore {
       this.setLoading(true);
 
       const response = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?q=${cityStore.city}&appid=${WEATHER_API_KEY}`
+        `http://api.weatherapi.com/v1/current.json`,
+        {
+          params: {
+            key: WEATHER_API_KEY,
+            q: cityStore.city,
+            aqi: "no",
+          },
+        }
       );
-      const data: WeatherData = response.data;
-      console.log("Weather data fetched:", data);
 
       if (response.status === 200) {
+        const data: WeatherData = response.data;
         this.setWeatherData(data);
       } else {
         this.setError("Failed to fetch weather data");
@@ -73,5 +86,4 @@ class WeatherStore {
     }
   };
 }
-
 export const weatherStore = new WeatherStore();

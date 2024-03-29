@@ -12,6 +12,7 @@ const TodaysWeather = observer(() => {
 
   useEffect(() => {
     weatherStore.fetchWeatherData();
+    console.log(weatherStore.weatherData, "assjjkadfdd");
 
     const animation = Animated.sequence([
       Animated.timing(neonAnim, {

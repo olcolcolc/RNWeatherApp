@@ -1,6 +1,6 @@
 import { makeObservable, observable, action } from "mobx";
 import { WEATHER_API_KEY } from "@env";
-import { cityStore } from "./CityStore";
+import { cityStore } from "../stores/CityStore";
 import axios from "axios";
 
 interface WeatherData {

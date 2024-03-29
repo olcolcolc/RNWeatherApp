@@ -12,7 +12,12 @@ const TodaysWeather = observer(() => {
 
   useEffect(() => {
     weatherStore.fetchWeatherData();
-    console.log(weatherStore.weatherData, "assjjkadfdd");
+    console.log(
+      weatherStore.tempCelsius,
+      weatherStore.weatherCondition,
+      weatherStore.humidity,
+      "assjjkadfdd"
+    );
 
     const animation = Animated.sequence([
       Animated.timing(neonAnim, {
@@ -49,7 +54,7 @@ const TodaysWeather = observer(() => {
         <WeatherIcon name="sunny" size="today" />
       </Animated.Text>
       <Text style={text.light}>{weatherStore.tempCelsius}°C</Text>
-      <Text style={text.dark}>Sunny</Text>
+      <Text style={text.dark}>{weatherStore.weatherCondition}</Text>
     </View>
   );
 });

@@ -13,11 +13,28 @@ interface WeatherData {
     humidity: number;
     wind_kph: number;
   };
+  forecast?: {
+    forecastday: [
+      {
+        date: string;
+        day: {
+          maxtemp_c: number;
+          mintemp_c: number;
+          condition: {
+            text: string;
+          };
+        };
+      }
+    ];
+  };
+  location?: { country: string };
 }
 
 class WeatherStore {
   // Observable properties
+  forecastDays: number = 1; //Current day as a default
   weatherData: WeatherData | null = null;
+  weeklyForecast: WeatherData | null = null;
   error = "";
   loading = false;
   tempCelsius: string | null = null;
@@ -29,12 +46,14 @@ class WeatherStore {
     // Make properties observable
     makeObservable(this, {
       weatherData: observable,
+      weeklyForecast: observable,
       error: observable,
       loading: observable,
       weatherCondition: observable,
       humidity: observable,
       windKph: observable,
       setWeatherData: action,
+      // setWeeklyForecast: action,
       setTempCelsius: action,
       setError: action,
       setLoading: action,
@@ -53,6 +72,10 @@ class WeatherStore {
     this.setWindKph();
   };
 
+  setForecastDays = (days: number) => {
+    this.forecastDays = days;
+  };
+
   setTempCelsius = () => {
     if (this.weatherData?.current) {
       this.tempCelsius = this.weatherData.current.temp_c.toFixed(0);
@@ -68,6 +91,13 @@ class WeatherStore {
       this.weatherCondition = null;
     }
   };
+
+  // setWeeklyForecast = (weeklyForecast: WeatherData | null) => {
+  //   if (this.weatherData?.forecast?.forecastday) {
+  //     this.weeklyForecast = this.weatherData?.forecast?.forecastday;
+  //   } else {
+  //     this.weeklyForecast = null;
+  //   }  };
 
   setHumidity = () => {
     if (this.weatherData?.current) {
@@ -100,12 +130,14 @@ class WeatherStore {
       this.setLoading(true);
 
       const response = await axios.get(
-        `http://api.weatherapi.com/v1/current.json`,
+        `https://api.weatherapi.com/v1/forecast.json`,
         {
           params: {
             key: WEATHER_API_KEY,
             q: cityStore.city,
+            days: this.forecastDays,
             aqi: "no",
+            alerts: "no",
           },
         }
       );
@@ -122,6 +154,36 @@ class WeatherStore {
       this.setLoading(false);
     }
   };
+
+  // fetchWeeklyWeatherData = async () => {
+  //   try {
+  //     this.setError("");
+  //     this.setLoading(true);
+
+  //     const response = await axios.get(
+  //       `http://api.weatherapi.com/v1/forecast.json`,
+  //       {
+  //         params: {
+  //           key: WEATHER_API_KEY,
+  //           q: cityStore.city,
+  //           aqi: "no",
+  //           days: 7,
+  //         },
+  //       }
+  //     );
+
+  //     if (response.status === 200) {
+  //       this.setWeeklyForecast(response.data);
+  //     } else {
+  //       this.setError("Failed to fetch weather data");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error fetching weather data:", error);
+  //     this.setError("Failed to fetch weather data");
+  //   } finally {
+  //     this.setLoading(false);
+  //   }
+  // };
 }
 
 // Export an instance of the store

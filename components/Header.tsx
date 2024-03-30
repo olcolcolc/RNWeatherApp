@@ -4,6 +4,7 @@ import { text } from "../styles/texts";
 import { cityStore } from "../stores/CityStore";
 import { container } from "../styles/containers";
 import { observer } from "mobx-react-lite";
+import { weatherStore } from "../stores/WeatherStore";
 
 const Header = observer(() => {
   const today = new Date();
@@ -20,7 +21,9 @@ const Header = observer(() => {
         <Text style={text.light}>Error: {cityStore.error}</Text>
       ) : (
         <>
-          <Text style={text.light}>{cityStore.city}</Text>
+          <Text style={text.light}>
+            {cityStore.city}, {weatherStore.weatherData?.location?.country}
+          </Text>
         </>
       )}
       {/* DATE */}

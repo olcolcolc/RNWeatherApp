@@ -1,4 +1,4 @@
-import { StyleSheet, TextStyle } from "react-native";
+import { StyleSheet } from "react-native";
 
 export const container = StyleSheet.create({
   mainContainer: {
@@ -24,7 +24,8 @@ export const container = StyleSheet.create({
     marginRight: 16,
     marginBottom: 4,
     color: "white",
-    height: 120,
+    height: 180,
+    width: 150,
     justifyContent: "space-between",
     backgroundColor: "grey",
     borderRadius: 20,

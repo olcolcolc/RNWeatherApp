@@ -21,7 +21,9 @@ const Header = observer(() => {
         <Text style={text.light}>Error: {cityStore.error}</Text>
       ) : (
         <>
-          <Text style={text.light}>{cityStore.city}</Text>
+          <Text style={text.light}>
+            {cityStore.city}, {weatherStore.weatherData?.location?.country}
+          </Text>
         </>
       )}
       {/* DATE */}

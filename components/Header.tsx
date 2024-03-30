@@ -27,9 +27,10 @@ const Header = observer(() => {
         </>
       )}
       {/* DATE */}
+      <Text style={text.dark}>Today</Text>
       <Text style={text.dark}>
-        Today,{" "}
         {today.toLocaleDateString(undefined, {
+          weekday: "long",
           month: "long",
           day: "numeric",
         })}

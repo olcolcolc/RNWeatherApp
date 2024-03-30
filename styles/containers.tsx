@@ -24,7 +24,7 @@ export const container = StyleSheet.create({
     marginRight: 16,
     marginBottom: 4,
     color: "white",
-    height: 120,
+    height: 150,
     justifyContent: "space-between",
     backgroundColor: "grey",
     borderRadius: 20,

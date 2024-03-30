@@ -11,16 +11,8 @@ const TodaysWeather = observer(() => {
   const neonAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-    weatherStore.forecastDays = 7;
-    weatherStore.fetchWeatherData();
-    console.log(
-      weatherStore.tempCelsius,
-      weatherStore.weatherCondition,
-      weatherStore.humidity,
-      weatherStore.weatherData,
-      weatherStore.forecastDays,
-      "teeest"
-    );
+    console.log(weatherStore.weatherData);
+    console.log("testtt");
 
     const animation = Animated.sequence([
       Animated.timing(neonAnim, {

@@ -19,7 +19,7 @@ const TodaysWeather = observer(() => {
       weatherStore.humidity,
       weatherStore.weatherData,
       weatherStore.forecastDays,
-      "tesft"
+      "test"
     );
 
     const animation = Animated.sequence([

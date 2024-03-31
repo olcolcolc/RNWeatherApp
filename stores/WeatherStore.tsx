@@ -3,6 +3,26 @@ import { WEATHER_API_KEY } from "@env";
 import axios from "axios";
 import { cityStore } from "../stores/CityStore";
 
+// Add a request interceptor
+axios.interceptors.request.use(
+  function (config) {
+    // Log the request method and url
+    console.log("request HEREEE:", JSON.stringify(config, null, 2));
+    // If there are params, log them too
+    if (config.params) {
+      console.log("Paraaams:", config.params);
+    }
+
+    // You must return the request config
+    return config;
+  },
+
+  function (error) {
+    // Do something with request error
+    return Promise.reject(error);
+  }
+);
+
 // Define the structure of the weather data
 interface WeatherData {
   current?: {
@@ -20,6 +40,7 @@ interface WeatherData {
         day: {
           maxtemp_c: number;
           mintemp_c: number;
+          avgtemp_c: number;
           condition: {
             text: string;
           };
@@ -27,7 +48,7 @@ interface WeatherData {
       }
     ];
   };
-  location?: { country: string };
+  location?: { country: string; name: string };
 }
 
 class WeatherStore {
@@ -46,14 +67,12 @@ class WeatherStore {
     // Make properties observable
     makeObservable(this, {
       weatherData: observable,
-      weeklyForecast: observable,
       error: observable,
       loading: observable,
       weatherCondition: observable,
       humidity: observable,
       windKph: observable,
       setWeatherData: action,
-      // setWeeklyForecast: action,
       setTempCelsius: action,
       setError: action,
       setLoading: action,
@@ -92,13 +111,6 @@ class WeatherStore {
     }
   };
 
-  // setWeeklyForecast = (weeklyForecast: WeatherData | null) => {
-  //   if (this.weatherData?.forecast?.forecastday) {
-  //     this.weeklyForecast = this.weatherData?.forecast?.forecastday;
-  //   } else {
-  //     this.weeklyForecast = null;
-  //   }  };
-
   setHumidity = () => {
     if (this.weatherData?.current) {
       this.humidity = this.weatherData.current.humidity;
@@ -134,7 +146,7 @@ class WeatherStore {
         {
           params: {
             key: WEATHER_API_KEY,
-            q: cityStore.city,
+            q: "Wroclaw",
             days: this.forecastDays,
             aqi: "no",
             alerts: "no",
@@ -149,42 +161,14 @@ class WeatherStore {
       }
     } catch (error) {
       console.error("Error fetching weather data:", error);
+      console.error("Response data:", (error as any).response.data);
+      console.error("Response status:", (error as any).response.status);
+      console.error("Response headers:", (error as any).response.headers);
       this.setError("Failed to fetch weather data");
     } finally {
       this.setLoading(false);
     }
   };
-
-  // fetchWeeklyWeatherData = async () => {
-  //   try {
-  //     this.setError("");
-  //     this.setLoading(true);
-
-  //     const response = await axios.get(
-  //       `http://api.weatherapi.com/v1/forecast.json`,
-  //       {
-  //         params: {
-  //           key: WEATHER_API_KEY,
-  //           q: cityStore.city,
-  //           aqi: "no",
-  //           days: 7,
-  //         },
-  //       }
-  //     );
-
-  //     if (response.status === 200) {
-  //       this.setWeeklyForecast(response.data);
-  //     } else {
-  //       this.setError("Failed to fetch weather data");
-  //     }
-  //   } catch (error) {
-  //     console.error("Error fetching weather data:", error);
-  //     this.setError("Failed to fetch weather data");
-  //   } finally {
-  //     this.setLoading(false);
-  //   }
-  // };
 }
-
 // Export an instance of the store
 export const weatherStore = new WeatherStore();

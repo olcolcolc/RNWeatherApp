@@ -11,10 +11,6 @@ class CityStore {
     this.fetchCurrentCity();
   }
 
-  setCity(city: string) {
-    this.city = city;
-  }
-
   setError(error: string) {
     this.error = error;
   }
@@ -40,6 +36,10 @@ class CityStore {
     } finally {
       this.setLoading(false);
     }
+  }
+
+  setCity(city: string) {
+    this.city = city;
   }
 }
 

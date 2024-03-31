@@ -22,7 +22,8 @@ const Header = observer(() => {
       ) : (
         <>
           <Text style={text.light}>
-            {cityStore.city}, {weatherStore.weatherData?.location?.country}
+            {weatherStore.weatherData?.location?.name},{" "}
+            {weatherStore.weatherData?.location?.country}
           </Text>
         </>
       )}

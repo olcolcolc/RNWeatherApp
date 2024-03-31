@@ -15,7 +15,7 @@ const WeeklyForecast = () => {
           key={index}
           weatherCondition={day.day?.condition?.text || ""}
           //AVERAGE TEMP TODO
-          tempCelsius={(day.day?.mintemp_c + day.day?.maxtemp_c) / 2}
+          tempCelsius={day.day?.avgtemp_c}
           weekday={new Date(day.date).toLocaleDateString("en-US", {
             weekday: "long",
           })}

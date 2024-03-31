@@ -13,14 +13,6 @@ const TodaysWeather = observer(() => {
   useEffect(() => {
     weatherStore.forecastDays = 7;
     weatherStore.fetchWeatherData();
-    console.log(
-      weatherStore.tempCelsius,
-      weatherStore.weatherCondition,
-      weatherStore.humidity,
-      weatherStore.weatherData,
-      weatherStore.forecastDays,
-      "tesft"
-    );
 
     const animation = Animated.sequence([
       Animated.timing(neonAnim, {

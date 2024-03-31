@@ -14,6 +14,11 @@ export const text = StyleSheet.create({
     fontSize: 24,
     textAlign: "center",
   },
+  weeklyForecast: {
+    color: "white",
+    fontSize: 16,
+    textAlign: "center",
+  },
   error: {
     color: "red",
     fontSize: 18,

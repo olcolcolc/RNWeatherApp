@@ -3,13 +3,14 @@ import { View, Text, Animated } from "react-native";
 import { text } from "../styles/texts";
 import { container } from "../styles/containers";
 import WeatherIcon from "./WeatherIcon";
+import { observer } from "mobx-react-lite";
+import { weatherStore } from "../stores/WeatherStore";
 
-const NeonText = Animated.createAnimatedComponent(Text);
-
-const TodaysWeather = () => {
+const TodaysWeather = observer(() => {
   const neonAnim = useRef(new Animated.Value(0)).current;
+
   useEffect(() => {
-    let animation = Animated.sequence([
+    const animation = Animated.sequence([
       Animated.timing(neonAnim, {
         toValue: 1,
         duration: 100,
@@ -27,21 +28,26 @@ const TodaysWeather = () => {
       }),
     ]);
 
-    Animated.loop(animation, { iterations: 3 }).start(() => {
-      neonAnim.setValue(1);
-    });
+    Animated.loop(animation, { iterations: 3 }).start();
   }, [neonAnim]);
+
+  if (weatherStore.loading) {
+    return <Text>Loading...</Text>;
+  }
+
+  if (weatherStore.error) {
+    return <Text>Error: {weatherStore.error}</Text>;
+  }
 
   return (
     <View style={container.container}>
-      <NeonText style={{ ...text.light, opacity: neonAnim }}>
-        {" "}
-        <WeatherIcon name="rainy" size="today" />
-      </NeonText>
-      <Text style={text.light}>24°C</Text>
-      <Text style={text.dark}>Sunny</Text>
+      <Animated.Text style={{ opacity: neonAnim }}>
+        <WeatherIcon name="sunny" size="today" />
+      </Animated.Text>
+      <Text style={text.light}>{weatherStore.tempCelsius}°C</Text>
+      <Text style={text.dark}>{weatherStore.weatherCondition}</Text>
     </View>
   );
-};
+});
 
 export default TodaysWeather;

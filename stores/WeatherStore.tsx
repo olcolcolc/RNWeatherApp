@@ -109,7 +109,7 @@ class WeatherStore {
         {
           params: {
             key: WEATHER_API_KEY,
-            q: "Wroclaw",
+            q: cityStore.city,
             days: 7,
             aqi: "no",
             alerts: "no",

@@ -2,8 +2,9 @@ import React from "react";
 import { ScrollView } from "react-native-gesture-handler";
 import WeeklyForecastElement from "../components/WeeklyForecastElement";
 import { weatherStore } from "../stores/WeatherStore";
+import { observer } from "mobx-react";
 
-const WeeklyForecast = () => {
+const WeeklyForecast = observer(() => {
   return (
     <ScrollView
       horizontal
@@ -23,6 +24,6 @@ const WeeklyForecast = () => {
       ))}
     </ScrollView>
   );
-};
+});
 
 export default WeeklyForecast;

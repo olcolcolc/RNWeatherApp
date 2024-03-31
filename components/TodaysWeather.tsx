@@ -5,14 +5,12 @@ import { container } from "../styles/containers";
 import WeatherIcon from "./WeatherIcon";
 import { observer } from "mobx-react-lite";
 import { weatherStore } from "../stores/WeatherStore";
-import { cityStore } from "../stores/CityStore";
 
 const TodaysWeather = observer(() => {
   const neonAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
     weatherStore.forecastDays = 7;
-    weatherStore.fetchWeatherData();
 
     const animation = Animated.sequence([
       Animated.timing(neonAnim, {

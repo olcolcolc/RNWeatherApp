@@ -4,8 +4,9 @@ import { Ionicons } from "@expo/vector-icons";
 import { text } from "../styles/texts";
 import { container } from "../styles/containers";
 import { weatherStore } from "../stores/WeatherStore";
+import { observer } from "mobx-react";
 
-const WeatherDetails = () => {
+const WeatherDetails = observer(() => {
   return (
     <View style={container.detailsContainer}>
       {/* WIND */}
@@ -25,6 +26,6 @@ const WeatherDetails = () => {
       </View>
     </View>
   );
-};
+});
 
 export default WeatherDetails;

@@ -1,4 +1,4 @@
-import { makeObservable, observable, action } from "mobx";
+import { makeObservable, observable, action, makeAutoObservable } from "mobx";
 import { WEATHER_API_KEY } from "@env";
 import axios from "axios";
 import { cityStore } from "../stores/CityStore";
@@ -65,17 +65,8 @@ class WeatherStore {
 
   constructor() {
     // Make properties observable
-    makeObservable(this, {
-      weatherData: observable,
-      error: observable,
-      loading: observable,
-      weatherCondition: observable,
-      humidity: observable,
-      windKph: observable,
-      setWeatherData: action,
-      setError: action,
-      setLoading: action,
-    });
+    makeAutoObservable(this);
+    this.fetchWeatherData();
   }
 
   // Action methods to update observable properties
@@ -119,7 +110,7 @@ class WeatherStore {
           params: {
             key: WEATHER_API_KEY,
             q: "Wroclaw",
-            days: this.forecastDays,
+            days: 7,
             aqi: "no",
             alerts: "no",
           },

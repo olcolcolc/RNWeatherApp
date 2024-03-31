@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { ActivityIndicator, Text, View } from "react-native";
 import { text } from "../styles/texts";
-import { cityStore } from "../stores/CityStore";
+import { locationStore } from "../stores/LocationStore";
 import { container } from "../styles/containers";
 import { observer } from "mobx-react-lite";
 import { weatherStore } from "../stores/WeatherStore";
@@ -18,7 +18,7 @@ const Header = observer(() => {
           <ActivityIndicator size="small" color="white" />
         </Text>
       ) : weatherStore.error ? (
-        <Text style={text.light}>Error: {cityStore.error}</Text>
+        <Text style={text.light}>Error: {weatherStore.error}</Text>
       ) : (
         <>
           <Text style={text.light}>

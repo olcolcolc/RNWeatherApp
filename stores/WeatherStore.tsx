@@ -1,16 +1,16 @@
-import { makeObservable, observable, action, makeAutoObservable } from "mobx";
+import { makeAutoObservable } from "mobx";
 import { WEATHER_API_KEY } from "@env";
 import axios from "axios";
-import { cityStore } from "../stores/CityStore";
+import { locationStore } from "./LocationStore"; // Import the 'cityStore' from the appropriate file
 
 // Add a request interceptor
 axios.interceptors.request.use(
   function (config) {
     // Log the request method and url
-    console.log("request HEREEE:", JSON.stringify(config, null, 2));
+    console.log("request:", JSON.stringify(config, null, 2));
     // If there are params, log them too
     if (config.params) {
-      console.log("Paraaams:", config.params);
+      console.log("Params:", config.params);
     }
 
     // You must return the request config
@@ -45,15 +45,15 @@ interface WeatherData {
             text: string;
           };
         };
+        astro: { sunrise: string };
       }
     ];
   };
-  location?: { country: string; name: string };
+  location?: { country: string; name: string; lat: number; lon: number };
 }
 
 class WeatherStore {
   // Observable properties
-  forecastDays: number = 1; //Current day as a default
   weatherData: WeatherData | null = null;
   weeklyForecast: WeatherData | null = null;
   error = "";
@@ -62,11 +62,14 @@ class WeatherStore {
   weatherCondition: string | null = null;
   humidity: number | null = null;
   windKph: number | null = null;
+  sunrise: string | null = null;
 
   constructor() {
     // Make properties observable
     makeAutoObservable(this);
-    this.fetchWeatherData();
+    locationStore.fetchCurrentLocation().then(() => {
+      this.fetchWeatherData();
+    });
   }
 
   // Action methods to update observable properties
@@ -78,16 +81,15 @@ class WeatherStore {
       this.weatherCondition = weatherData.current.condition.text;
       this.humidity = weatherData.current.humidity;
       this.windKph = weatherData.current.wind_kph;
+      this.sunrise =
+        weatherData.forecast?.forecastday[0]?.astro?.sunrise ?? null;
     } else {
       this.tempCelsius = null;
       this.weatherCondition = null;
       this.humidity = null;
       this.windKph = null;
+      this.sunrise = null;
     }
-  };
-
-  setForecastDays = (days: number) => {
-    this.forecastDays = days;
   };
 
   setError = (error: string) => {
@@ -109,7 +111,7 @@ class WeatherStore {
         {
           params: {
             key: WEATHER_API_KEY,
-            q: cityStore.city,
+            q: `${locationStore.latitude},${locationStore.longitude}`,
             days: 7,
             aqi: "no",
             alerts: "no",

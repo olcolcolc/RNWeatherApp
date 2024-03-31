@@ -22,7 +22,7 @@ const WeatherDetails = observer(() => {
       {/* SUNRISE */}
       <View>
         <Ionicons name="sunny-outline" size={24} style={text.iconDetails} />
-        <Text style={text.light}>6AM</Text>
+        <Text style={text.light}>{weatherStore.sunrise}</Text>
       </View>
     </View>
   );

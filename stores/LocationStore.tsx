@@ -1,14 +1,15 @@
 import { makeAutoObservable } from "mobx";
 import * as Location from "expo-location";
 
-class CityStore {
-  city = "";
+class LocationStore {
+  latitude: number | null = null;
+  longitude: number | null = null;
   error = "";
   loading = false;
 
   constructor() {
     makeAutoObservable(this);
-    this.fetchCurrentCity();
+    this.fetchCurrentLocation();
   }
 
   setError(error: string) {
@@ -19,7 +20,7 @@ class CityStore {
     this.loading = loading;
   }
 
-  async fetchCurrentCity() {
+  async fetchCurrentLocation() {
     this.setLoading(true);
 
     try {
@@ -29,18 +30,18 @@ class CityStore {
       }
 
       let location = await Location.getCurrentPositionAsync({});
-      let reverseCode = await Location.reverseGeocodeAsync(location.coords);
-      this.setCity(reverseCode[0].city ?? "");
+      this.setLocation(location.coords.latitude, location.coords.longitude);
     } catch (error: unknown) {
-      cityStore.setError((error as Error).message);
+      this.setError((error as Error).message);
     } finally {
       this.setLoading(false);
     }
   }
 
-  setCity(city: string) {
-    this.city = city;
+  setLocation(latitude: number, longitude: number) {
+    this.latitude = latitude;
+    this.longitude = longitude;
   }
 }
 
-export const cityStore = new CityStore();
+export const locationStore = new LocationStore();

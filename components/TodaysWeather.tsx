@@ -10,8 +10,6 @@ const TodaysWeather = observer(() => {
   const neonAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-    weatherStore.forecastDays = 7;
-
     const animation = Animated.sequence([
       Animated.timing(neonAnim, {
         toValue: 1,
@@ -33,13 +31,13 @@ const TodaysWeather = observer(() => {
     Animated.loop(animation, { iterations: 3 }).start();
   }, [neonAnim]);
 
-  //   if (weatherStore.loading) {
-  //     return <Text>Loading...</Text>;
-  //   }
+  if (weatherStore.loading) {
+    return <Text>Loading...</Text>;
+  }
 
-  //   if (weatherStore.error) {
-  //     return <Text>Error: {weatherStore.error}</Text>;
-  //   }
+  if (weatherStore.error) {
+    return <Text>Error: {weatherStore.error}</Text>;
+  }
 
   return (
     <View style={container.container}>

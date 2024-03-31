@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { ActivityIndicator, Text, View } from "react-native";
 import { text } from "../styles/texts";
-import { locationStore } from "../stores/LocationStore";
 import { container } from "../styles/containers";
 import { observer } from "mobx-react-lite";
 import { weatherStore } from "../stores/WeatherStore";

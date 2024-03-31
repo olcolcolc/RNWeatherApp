@@ -1,7 +1,7 @@
 import { makeAutoObservable } from "mobx";
 import { WEATHER_API_KEY } from "@env";
 import axios from "axios";
-import { locationStore } from "./LocationStore"; // Import the 'cityStore' from the appropriate file
+import { locationStore } from "./LocationStore";
 
 // Add a request interceptor
 axios.interceptors.request.use(
@@ -125,10 +125,6 @@ class WeatherStore {
         this.setError("Failed to fetch weather data");
       }
     } catch (error) {
-      console.error("Error fetching weather data:", error);
-      console.error("Response data:", (error as any).response.data);
-      console.error("Response status:", (error as any).response.status);
-      console.error("Response headers:", (error as any).response.headers);
       this.setError("Failed to fetch weather data");
     } finally {
       this.setLoading(false);

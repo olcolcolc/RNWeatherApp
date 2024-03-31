@@ -12,12 +12,12 @@ const Header = observer(() => {
   return (
     <View style={container.header}>
       {/* CITY */}
-      {cityStore.loading ? (
+      {weatherStore.loading ? (
         // LOADING ICON
         <Text style={text.light}>
           <ActivityIndicator size="small" color="white" />
         </Text>
-      ) : cityStore.error ? (
+      ) : weatherStore.error ? (
         <Text style={text.light}>Error: {cityStore.error}</Text>
       ) : (
         <>

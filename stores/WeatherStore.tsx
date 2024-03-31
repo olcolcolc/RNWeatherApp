@@ -73,58 +73,30 @@ class WeatherStore {
       humidity: observable,
       windKph: observable,
       setWeatherData: action,
-      setTempCelsius: action,
       setError: action,
       setLoading: action,
-      setWeatherCondition: action,
-      setHumidity: action,
-      setWindKph: action,
     });
   }
 
   // Action methods to update observable properties
   setWeatherData = (weatherData: WeatherData | null) => {
     this.weatherData = weatherData;
-    this.setTempCelsius();
-    this.setWeatherCondition();
-    this.setHumidity();
-    this.setWindKph();
+
+    if (weatherData?.current) {
+      this.tempCelsius = weatherData.current.temp_c.toFixed(0);
+      this.weatherCondition = weatherData.current.condition.text;
+      this.humidity = weatherData.current.humidity;
+      this.windKph = weatherData.current.wind_kph;
+    } else {
+      this.tempCelsius = null;
+      this.weatherCondition = null;
+      this.humidity = null;
+      this.windKph = null;
+    }
   };
 
   setForecastDays = (days: number) => {
     this.forecastDays = days;
-  };
-
-  setTempCelsius = () => {
-    if (this.weatherData?.current) {
-      this.tempCelsius = this.weatherData.current.temp_c.toFixed(0);
-    } else {
-      this.tempCelsius = null;
-    }
-  };
-
-  setWeatherCondition = () => {
-    if (this.weatherData?.current?.condition) {
-      this.weatherCondition = this.weatherData.current.condition.text;
-    } else {
-      this.weatherCondition = null;
-    }
-  };
-
-  setHumidity = () => {
-    if (this.weatherData?.current) {
-      this.humidity = this.weatherData.current.humidity;
-    } else {
-      this.humidity = null;
-    }
-  };
-
-  setWindKph = () => {
-    if (this.weatherData?.current) {
-      this.windKph = this.weatherData.current.wind_kph;
-    } else {
-      this.windKph = null;
-    }
   };
 
   setError = (error: string) => {

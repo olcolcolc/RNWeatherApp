@@ -15,9 +15,10 @@ const WeeklyForecastElement: React.FC<WeeklyForecastElementProps> = observer(
   ({ weatherCondition, tempCelsius, weekday }) => {
     return (
       <View style={container.weekWeatherElement}>
-        <WeatherIcon name="sunny" size="weekday" />
+        <WeatherIcon name={weatherCondition} size="weekday" />
         <Text style={text.light}>{tempCelsius} °C</Text>
         <Text style={text.light}>{weekday}</Text>
+        <Text style={text.light}>{weatherCondition}</Text>
       </View>
     );
   }

@@ -18,7 +18,7 @@ const WeeklyForecastElement: React.FC<WeeklyForecastElementProps> = observer(
         <WeatherIcon name={weatherCondition} size="weekday" />
         <Text style={text.light}>{tempCelsius} °C</Text>
         <Text style={text.light}>{weekday}</Text>
-        <Text style={text.light}>{weatherCondition}</Text>
+        <Text style={text.weeklyForecast}>{weatherCondition}</Text>
       </View>
     );
   }

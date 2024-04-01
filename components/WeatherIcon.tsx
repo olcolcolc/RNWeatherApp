@@ -19,21 +19,24 @@ const weatherConditions = {
   },
   "cloud-outline": { color: "grey", keywords: ["cloud", "fog", "mist"] },
   "reorder-four-outline": { color: "grey", keywords: ["fog"] },
-  "partly-sunny-outline": { color: "yellow", keywords: ["partly cloudy"] },
+  "partly-sunny-outline": { color: "yellow", keywords: ["Partly Cloudy"] },
   "flash-outline": { color: "yellow", keywords: ["thunder"] },
 };
 
 const WeatherIcon: React.FC<WeatherIconProps> = ({ name, size }) => {
   const lowerName = name?.toLowerCase();
+
   // Default icon
-  let iconName: keyof typeof weatherConditions = "cloud-outline";
-  let iconColor = "grey";
+  let iconName: keyof typeof weatherConditions = "partly-sunny-outline";
+  let iconColor: string = weatherConditions["partly-sunny-outline"].color;
 
   for (const [icon, { color, keywords }] of Object.entries(weatherConditions)) {
-    if (keywords.some((keyword) => lowerName && lowerName.includes(keyword))) {
+    if (
+      lowerName &&
+      keywords.some((keyword) => lowerName.includes(keyword.toLowerCase()))
+    ) {
       iconName = icon as keyof typeof weatherConditions;
       iconColor = color;
-      break;
     }
   }
 

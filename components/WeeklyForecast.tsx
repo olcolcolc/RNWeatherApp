@@ -15,7 +15,7 @@ const WeeklyForecast = observer(() => {
         <WeeklyForecastElement
           key={index}
           weatherCondition={day.day?.condition?.text || ""}
-          tempCelsius={day.day?.avgtemp_c}
+          tempCelsius={Math.round(day.day?.avgtemp_c)}
           weekday={new Date(day.date).toLocaleDateString("en-US", {
             weekday: "long",
           })}

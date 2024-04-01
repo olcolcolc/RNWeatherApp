@@ -10,16 +10,12 @@ const Header = observer(() => {
 
   return (
     <View style={container.header}>
-      {weatherStore.error ? (
-        <Text style={text.error}>Error: {weatherStore.error}</Text>
-      ) : (
-        <>
-          <Text style={text.light}>
-            {weatherStore.weatherData?.location?.name},{" "}
-            {weatherStore.weatherData?.location?.country}
-          </Text>
-        </>
-      )}
+      <>
+        <Text style={text.light}>
+          {weatherStore.weatherData?.location?.name},{" "}
+          {weatherStore.weatherData?.location?.country}
+        </Text>
+      </>
       <Text style={text.dark}>Today</Text>
       <Text style={text.dark}>
         {today.toLocaleDateString(undefined, {

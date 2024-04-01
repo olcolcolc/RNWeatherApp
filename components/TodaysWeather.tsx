@@ -31,10 +31,6 @@ const TodaysWeather = observer(() => {
     Animated.loop(animation, { iterations: 3 }).start();
   }, [neonAnim]);
 
-  if (weatherStore.loading) {
-    return <Text>Loading...</Text>;
-  }
-
   if (weatherStore.error) {
     return <Text>Error: {weatherStore.error}</Text>;
   }

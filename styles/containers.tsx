@@ -10,7 +10,6 @@ export const container = StyleSheet.create({
   container: {
     justifyContent: "center",
     alignItems: "center",
-    padding: 10,
     marginBottom: 20,
     marginVertical: 50,
   },
@@ -24,7 +23,7 @@ export const container = StyleSheet.create({
     alignItems: "center",
     padding: 24,
     marginRight: 16,
-    marginBottom: 4,
+    marginBottom: 5,
     color: "white",
     height: 180,
     width: 150,

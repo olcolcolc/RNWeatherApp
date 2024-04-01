@@ -1,5 +1,5 @@
 import React from "react";
-import { ActivityIndicator, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import { text } from "../styles/texts";
 import { container } from "../styles/containers";
 import { observer } from "mobx-react-lite";
@@ -10,14 +10,8 @@ const Header = observer(() => {
 
   return (
     <View style={container.header}>
-      {/* CITY */}
-      {weatherStore.loading ? (
-        // LOADING ICON
-        <Text style={text.light}>
-          <ActivityIndicator size="small" color="white" />
-        </Text>
-      ) : weatherStore.error ? (
-        <Text style={text.light}>Error: {weatherStore.error}</Text>
+      {weatherStore.error ? (
+        <Text style={text.error}>Error: {weatherStore.error}</Text>
       ) : (
         <>
           <Text style={text.light}>
@@ -26,7 +20,6 @@ const Header = observer(() => {
           </Text>
         </>
       )}
-      {/* DATE */}
       <Text style={text.dark}>Today</Text>
       <Text style={text.dark}>
         {today.toLocaleDateString(undefined, {

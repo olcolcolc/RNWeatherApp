@@ -1,9 +1,8 @@
 import React from "react";
 import { View, Text } from "react-native";
-import { text } from "../styles/texts";
-import { container } from "../styles/containers";
 import WeatherIcon from "./WeatherIcon";
 import { observer } from "mobx-react";
+import { weeklyForecast } from "../styles/components/weeklyForecast";
 
 type WeeklyForecastElementProps = {
   weatherCondition: string;
@@ -14,11 +13,11 @@ type WeeklyForecastElementProps = {
 const WeeklyForecastElement: React.FC<WeeklyForecastElementProps> = observer(
   ({ weatherCondition, tempCelsius, weekday }) => {
     return (
-      <View style={container.weekWeatherElement}>
+      <View style={weeklyForecast.container}>
         <WeatherIcon name={weatherCondition} size="weekday" />
-        <Text style={text.light}>{tempCelsius} °C</Text>
-        <Text style={text.light}>{weekday}</Text>
-        <Text style={text.weeklyForecast}>{weatherCondition}</Text>
+        <Text style={weeklyForecast.temp}>{tempCelsius} °C</Text>
+        <Text style={weeklyForecast.weekday}>{weekday}</Text>
+        <Text style={weeklyForecast.conditionText}>{weatherCondition}</Text>
       </View>
     );
   }

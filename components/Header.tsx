@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, View } from "react-native";
-import { text } from "../styles/texts";
-import { container } from "../styles/containers";
+import { text } from "../styles/common/texts";
+import { container } from "../styles/common/containers";
 import { observer } from "mobx-react-lite";
 import { weatherStore } from "../stores/WeatherStore";
 

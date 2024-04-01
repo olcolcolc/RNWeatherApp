@@ -1,6 +1,6 @@
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
-import { text } from "../styles/texts";
+import { text } from "../styles/common/texts";
 
 interface WeatherIconProps {
   name: string | null;
@@ -17,9 +17,9 @@ const weatherConditions = {
     color: "white",
     keywords: ["snow", "freez", "blizzard", "ice"],
   },
-  "cloud-outline": { color: "grey", keywords: ["cloud", "fog", "mist"] },
-  "reorder-four-outline": { color: "grey", keywords: ["fog"] },
-  "partly-sunny-outline": { color: "yellow", keywords: ["Partly Cloudy"] },
+  "cloudy-outline": { color: "silver", keywords: ["cloud"] },
+  "reorder-four-outline": { color: "silver", keywords: ["fog", "mist"] },
+  "partly-sunny-outline": { color: "yellow", keywords: ["partly cloudy"] },
   "flash-outline": { color: "yellow", keywords: ["thunder"] },
 };
 
@@ -40,14 +40,13 @@ const WeatherIcon: React.FC<WeatherIconProps> = ({ name, size }) => {
     }
   }
 
-  const iconSize = size === "today" ? 160 : 40;
-
+  const iconSize = size === "today" ? 160 : 50;
   return (
     <Ionicons
       name={iconName}
       size={iconSize}
       color={iconColor}
-      style={size === "weekday" ? undefined : text.neon}
+      style={size === "today" ? text.neon : undefined}
     />
   );
 };

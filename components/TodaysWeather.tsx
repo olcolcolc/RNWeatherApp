@@ -42,7 +42,7 @@ const TodaysWeather = observer(() => {
   return (
     <View style={container.container}>
       <Animated.Text style={{ opacity: neonAnim }}>
-        <WeatherIcon name="sunny" size="today" />
+        <WeatherIcon name={weatherStore.weatherCondition} size="today" />
       </Animated.Text>
       <Text style={text.light}>{weatherStore.tempCelsius}°C</Text>
       <Text style={text.dark}>{weatherStore.weatherCondition}</Text>

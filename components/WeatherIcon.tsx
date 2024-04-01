@@ -1,52 +1,43 @@
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
-import { StyleSheet } from "react-native";
 import { text } from "../styles/texts";
 
 interface WeatherIconProps {
-  name: "sunny" | "cloudy" | "rainy" | string;
+  name: string | null;
   size: "today" | "weekday";
 }
 
-type IconName =
-  | "sunny-outline"
-  | "cloud-outline"
-  | "rainy-outline"
-  | "help-circle-outline";
+const weatherConditions = {
+  "sunny-outline": { color: "yellow", keywords: ["sun", "overcast", "clear"] },
+  "rainy-outline": {
+    color: "lightblue",
+    keywords: ["rain", "sleet", "drizzle"],
+  },
+  "snow-outline": {
+    color: "white",
+    keywords: ["snow", "freez", "blizzard", "ice"],
+  },
+  "cloud-outline": { color: "grey", keywords: ["cloud", "fog", "mist"] },
+  "reorder-four-outline": { color: "grey", keywords: ["fog"] },
+  "partly-sunny-outline": { color: "yellow", keywords: ["partly cloudy"] },
+  "flash-outline": { color: "yellow", keywords: ["thunder"] },
+};
 
 const WeatherIcon: React.FC<WeatherIconProps> = ({ name, size }) => {
-  let iconName: IconName;
-  let iconColor: string;
-  let iconSize: number;
+  const lowerName = name?.toLowerCase();
+  // Default icon
+  let iconName: keyof typeof weatherConditions = "cloud-outline";
+  let iconColor = "grey";
 
-  switch (name) {
-    case "sunny":
-      iconName = "sunny-outline";
-      iconColor = "yellow";
+  for (const [icon, { color, keywords }] of Object.entries(weatherConditions)) {
+    if (keywords.some((keyword) => lowerName && lowerName.includes(keyword))) {
+      iconName = icon as keyof typeof weatherConditions;
+      iconColor = color;
       break;
-    case "cloudy":
-      iconName = "cloud-outline";
-      iconColor = "grey";
-      break;
-    case "rainy":
-      iconName = "rainy-outline";
-      iconColor = "lightblue";
-      break;
-    default:
-      iconName = "help-circle-outline";
-      iconColor = "black";
+    }
   }
 
-  switch (size) {
-    case "today":
-      iconSize = 160;
-      break;
-    case "weekday":
-      iconSize = 40;
-      break;
-    default:
-      iconSize = 24;
-  }
+  const iconSize = size === "today" ? 160 : 40;
 
   return (
     <Ionicons

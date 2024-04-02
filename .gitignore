@@ -36,4 +36,5 @@ yarn-error.*
 *.tsbuildinfo
 
 # Ignore _active.uusver file
+%ProgramData%
 _active.uusver

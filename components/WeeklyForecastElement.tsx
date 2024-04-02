@@ -3,6 +3,7 @@ import { View, Text } from "react-native";
 import WeatherIcon from "./WeatherIcon";
 import { observer } from "mobx-react";
 import { weeklyForecast } from "../styles/components/weeklyForecast";
+import { container } from "../styles/common/containers";
 
 type WeeklyForecastElementProps = {
   weatherCondition: string;
@@ -13,7 +14,7 @@ type WeeklyForecastElementProps = {
 const WeeklyForecastElement: React.FC<WeeklyForecastElementProps> = observer(
   ({ weatherCondition, tempCelsius, weekday }) => {
     return (
-      <View style={weeklyForecast.container}>
+      <View style={container.weeklyForecastElementContainer}>
         <WeatherIcon name={weatherCondition} size="weekday" />
         <Text style={weeklyForecast.temp}>{tempCelsius} °C</Text>
         <Text style={weeklyForecast.weekday}>{weekday}</Text>

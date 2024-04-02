@@ -8,7 +8,10 @@ const WeeklyForecast = observer(() => {
   return (
     <ScrollView
       horizontal
-      contentContainerStyle={{ paddingHorizontal: 15 }}
+      contentContainerStyle={{
+        paddingHorizontal: 15,
+        alignItems: "flex-end",
+      }}
       showsHorizontalScrollIndicator={false}
     >
       {weatherStore.weatherData?.forecast?.forecastday?.map((day, index) => (

@@ -11,6 +11,7 @@ import WeeklyForecast from "../components/WeeklyForecast";
 import { weatherStore } from "../stores/WeatherStore";
 import { Text } from "react-native";
 import { text } from "../styles/common/texts";
+import { theme } from "../styles/theme/theme";
 
 const HomeScreen = observer(() => {
   return (
@@ -20,15 +21,16 @@ const HomeScreen = observer(() => {
         {weatherStore.loading ? (
           <View style={container.container}>
             <Text style={text.loading}>RNWeatherApp</Text>
-            <ActivityIndicator size={80} color="white" />
+            <ActivityIndicator size={80} color={theme.colors.white} />
           </View>
         ) : (
           <>
             <Header />
+            <View style={container.centerContainer}>
+              <TodaysWeather />
 
-            <TodaysWeather />
-
-            <WeatherDetails />
+              <WeatherDetails />
+            </View>
 
             <WeeklyForecast />
           </>

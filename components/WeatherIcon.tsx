@@ -1,6 +1,7 @@
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { text } from "../styles/common/texts";
+import { theme } from "../styles/theme/theme";
 
 interface WeatherIconProps {
   name: string | null;
@@ -8,19 +9,28 @@ interface WeatherIconProps {
 }
 
 const weatherConditions = {
-  "sunny-outline": { color: "yellow", keywords: ["sun", "overcast", "clear"] },
+  "sunny-outline": {
+    color: theme.colors.yellow,
+    keywords: ["sun", "overcast", "clear"],
+  },
   "rainy-outline": {
-    color: "lightblue",
+    color: theme.colors.lightblue,
     keywords: ["rain", "sleet", "drizzle"],
   },
   "snow-outline": {
-    color: "white",
+    color: theme.colors.white,
     keywords: ["snow", "freez", "blizzard", "ice"],
   },
-  "cloudy-outline": { color: "silver", keywords: ["cloud"] },
-  "reorder-four-outline": { color: "silver", keywords: ["fog", "mist"] },
-  "partly-sunny-outline": { color: "yellow", keywords: ["partly cloudy"] },
-  "flash-outline": { color: "yellow", keywords: ["thunder"] },
+  "cloudy-outline": { color: theme.colors.silver, keywords: ["cloud"] },
+  "reorder-four-outline": {
+    color: theme.colors.silver,
+    keywords: ["fog", "mist"],
+  },
+  "partly-sunny-outline": {
+    color: theme.colors.yellow,
+    keywords: ["partly cloudy"],
+  },
+  "flash-outline": { color: theme.colors.yellow, keywords: ["thunder"] },
 };
 
 const WeatherIcon: React.FC<WeatherIconProps> = ({ name, size }) => {

@@ -1,5 +1,6 @@
-import { StyleSheet, TextStyle } from "react-native";
+import { Platform, StyleSheet, TextStyle } from "react-native";
 import { theme } from "../theme/theme";
+import { rem } from "./rem";
 
 const neonStyle: TextStyle = {
   textShadowColor: "#D0F0C0",
@@ -35,5 +36,6 @@ export const text = StyleSheet.create({
   },
   neon: {
     ...neonStyle,
+    fontSize: Platform.OS === "android" ? rem(200) : rem(150),
   },
 });

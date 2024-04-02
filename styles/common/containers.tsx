@@ -19,8 +19,7 @@ export const container = StyleSheet.create({
     alignItems: "flex-start",
   },
   centerContainer: {
-    height: "50%",
-    top: "5%",
+    paddingVertical: rem(5),
   },
 
   weeklyForecastElementContainer: {

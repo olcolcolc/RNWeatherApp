@@ -12,6 +12,7 @@ import { weatherStore } from "../stores/WeatherStore";
 import { screenOrientationStore } from "../stores/ScreenOrientationStore";
 import { text } from "../styles/common/texts";
 import { theme } from "../styles/theme/theme";
+import WeeklyForecastDetailsModal from "../components/WeeklyForecastDetailsModal";
 
 const HomeScreen = observer(() => {
   const { orientation } = screenOrientationStore;
@@ -22,14 +23,14 @@ const HomeScreen = observer(() => {
       <StatusBar style="light" />
       <SafeAreaView style={{ flex: 1 }}>
         {loading ? (
-          <View style={container.container}>
+          <View style={container.mainContainer}>
             <Text style={text.loading}>RNWeatherApp</Text>
             <ActivityIndicator size={80} color={theme.colors.white} />
           </View>
         ) : (
           <View>
             <Header />
-            <View
+            <ScrollView
               style={container.centerContainer}
               // style={
               //   orientation === "LANDSCAPE"
@@ -40,18 +41,17 @@ const HomeScreen = observer(() => {
               //     : container.centerContainer
               // }
             >
-              <View>
-                <TodaysWeather />
-              </View>
-              <View>
-                <WeatherDetails />
-              </View>
-              <View>
-                <ScrollView>
-                  <WeeklyForecast />
-                </ScrollView>
-              </View>
-            </View>
+              <TodaysWeather />
+              <WeatherDetails
+                humidity={weatherStore.humidity}
+                windKph={weatherStore.windKph}
+                sunrise={weatherStore.sunrise}
+              />
+              <ScrollView>
+                <WeeklyForecast />
+                <WeeklyForecastDetailsModal />
+              </ScrollView>
+            </ScrollView>
           </View>
         )}
       </SafeAreaView>

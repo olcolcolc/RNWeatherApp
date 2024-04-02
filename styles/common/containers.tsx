@@ -18,13 +18,14 @@ export const container = StyleSheet.create({
     alignItems: "flex-start",
   },
   centerContainer: {
+    flex: 2,
     paddingVertical: rem(5),
   },
   weeklyForecastElementContainer: {
     ...centered,
     ...defaultTextStyle,
+    flex: 3,
     marginRight: 5,
-    marginBottom: 6,
     height: rem(180),
     width: rem(160),
     opacity: 0.8,

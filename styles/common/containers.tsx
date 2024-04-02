@@ -13,8 +13,8 @@ export const container = StyleSheet.create({
     ...centered,
   },
   header: {
-    padding: rem(20),
-    height: rem(120),
+    padding: 20,
+    height: 120,
     backgroundColor: "inherit",
     alignItems: "flex-start",
   },
@@ -26,12 +26,12 @@ export const container = StyleSheet.create({
   weeklyForecastElementContainer: {
     ...centered,
     ...defaultTextStyle,
-    marginRight: rem(16),
-    marginBottom: rem(5),
+    marginRight: 18,
+    marginBottom: 6,
     height: rem(180),
     width: rem(160),
     opacity: 0.8,
     backgroundColor: theme.colors.grey,
-    borderRadius: rem(20),
+    borderRadius: 20,
   },
 });

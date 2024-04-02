@@ -15,7 +15,7 @@ export const weatherDetails = StyleSheet.create({
     height: 60,
     borderRadius: 30,
     marginBottom: 8,
-    backgroundColor: "rgba(128, 128, 128, 0.4)", // grey color with 40% opacity
+    backgroundColor: theme.colors.greyWithOpacity,
   },
   icon: {
     color: theme.colors.white,

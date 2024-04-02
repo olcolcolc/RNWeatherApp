@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { View, Text, Animated } from "react-native";
-import { text } from "../styles/texts";
-import { container } from "../styles/containers";
+import { text } from "../styles/common/texts";
+import { container } from "../styles/common/containers";
 import WeatherIcon from "./WeatherIcon";
 import { observer } from "mobx-react-lite";
 import { weatherStore } from "../stores/WeatherStore";
@@ -31,20 +31,12 @@ const TodaysWeather = observer(() => {
     Animated.loop(animation, { iterations: 3 }).start();
   }, [neonAnim]);
 
-  if (weatherStore.loading) {
-    return <Text>Loading...</Text>;
-  }
-
-  if (weatherStore.error) {
-    return <Text>Error: {weatherStore.error}</Text>;
-  }
-
   return (
     <View style={container.container}>
       <Animated.Text style={{ opacity: neonAnim }}>
         <WeatherIcon name={weatherStore.weatherCondition} size="today" />
       </Animated.Text>
-      <Text style={text.light}>{weatherStore.tempCelsius}°C</Text>
+      <Text style={text.todayTemp}>{weatherStore.tempCelsius}°C</Text>
       <Text style={text.dark}>{weatherStore.weatherCondition}</Text>
     </View>
   );

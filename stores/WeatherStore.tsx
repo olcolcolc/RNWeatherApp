@@ -57,7 +57,7 @@ class WeatherStore {
   weatherData: WeatherData | null = null;
   weeklyForecast: WeatherData | null = null;
   error = "";
-  loading = false;
+  loading = true;
   tempCelsius: string | null = null;
   weatherCondition: string | null = null;
   humidity: number | null = null;

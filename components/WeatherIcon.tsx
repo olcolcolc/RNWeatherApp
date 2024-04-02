@@ -1,6 +1,7 @@
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
-import { text } from "../styles/texts";
+import { text } from "../styles/common/texts";
+import { theme } from "../styles/theme/theme";
 
 interface WeatherIconProps {
   name: string | null;
@@ -8,43 +9,54 @@ interface WeatherIconProps {
 }
 
 const weatherConditions = {
-  "sunny-outline": { color: "yellow", keywords: ["sun", "overcast", "clear"] },
+  "sunny-outline": {
+    color: theme.colors.yellow,
+    keywords: ["sun", "overcast", "clear"],
+  },
   "rainy-outline": {
-    color: "lightblue",
+    color: theme.colors.lightblue,
     keywords: ["rain", "sleet", "drizzle"],
   },
   "snow-outline": {
-    color: "white",
+    color: theme.colors.white,
     keywords: ["snow", "freez", "blizzard", "ice"],
   },
-  "cloud-outline": { color: "grey", keywords: ["cloud", "fog", "mist"] },
-  "reorder-four-outline": { color: "grey", keywords: ["fog"] },
-  "partly-sunny-outline": { color: "yellow", keywords: ["partly cloudy"] },
-  "flash-outline": { color: "yellow", keywords: ["thunder"] },
+  "cloudy-outline": { color: theme.colors.silver, keywords: ["cloud"] },
+  "reorder-four-outline": {
+    color: theme.colors.silver,
+    keywords: ["fog", "mist"],
+  },
+  "partly-sunny-outline": {
+    color: theme.colors.yellow,
+    keywords: ["partly cloudy"],
+  },
+  "flash-outline": { color: theme.colors.yellow, keywords: ["thunder"] },
 };
 
 const WeatherIcon: React.FC<WeatherIconProps> = ({ name, size }) => {
   const lowerName = name?.toLowerCase();
+
   // Default icon
-  let iconName: keyof typeof weatherConditions = "cloud-outline";
-  let iconColor = "grey";
+  let iconName: keyof typeof weatherConditions = "partly-sunny-outline";
+  let iconColor: string = weatherConditions["partly-sunny-outline"].color;
 
   for (const [icon, { color, keywords }] of Object.entries(weatherConditions)) {
-    if (keywords.some((keyword) => lowerName && lowerName.includes(keyword))) {
+    if (
+      lowerName &&
+      keywords.some((keyword) => lowerName.includes(keyword.toLowerCase()))
+    ) {
       iconName = icon as keyof typeof weatherConditions;
       iconColor = color;
-      break;
     }
   }
 
-  const iconSize = size === "today" ? 160 : 40;
-
+  const iconSize = size === "today" ? 160 : 50;
   return (
     <Ionicons
       name={iconName}
       size={iconSize}
       color={iconColor}
-      style={size === "weekday" ? undefined : text.neon}
+      style={size === "today" ? text.neon : undefined}
     />
   );
 };

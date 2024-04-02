@@ -41,6 +41,12 @@ interface WeatherData {
           maxtemp_c: number;
           mintemp_c: number;
           avgtemp_c: number;
+          maxwind_kph: number;
+          avghumidity: number;
+          daily_will_it_rain: number;
+          daily_chance_of_rain: number;
+          daily_will_it_snow: number;
+          daily_chance_of_snow: number;
           condition: {
             text: string;
           };
@@ -55,7 +61,6 @@ interface WeatherData {
 class WeatherStore {
   // Observable properties
   weatherData: WeatherData | null = null;
-  weeklyForecast: WeatherData | null = null;
   error = "";
   loading = true;
   tempCelsius: string | null = null;
@@ -90,6 +95,12 @@ class WeatherStore {
       this.windKph = null;
       this.sunrise = null;
     }
+  };
+
+  getForecastByDate = (date: string) => {
+    return this.weatherData?.forecast?.forecastday.find(
+      (forecast) => forecast.date === date
+    );
   };
 
   setError = (error: string) => {

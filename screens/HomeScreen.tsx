@@ -23,7 +23,7 @@ const HomeScreen = observer(() => {
       <StatusBar style="light" />
       <SafeAreaView style={{ flex: 1 }}>
         {loading ? (
-          <View style={container.container}>
+          <View style={container.mainContainer}>
             <Text style={text.loading}>RNWeatherApp</Text>
             <ActivityIndicator size={80} color={theme.colors.white} />
           </View>

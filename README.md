@@ -1,6 +1,6 @@
 # RNWeather Forecast App
 
-This is a weather forecast application built with React Native and Expo, developed in TypeScript. It utilizes the MobX state management library to effectively manage application state.
+This is a weather forecast application built with React Native and Expo, developed in TypeScript. It utilizes the MobX state management library to effectively manage application state. Application utilizes the Weather API from [weatherapi.com](https://www.weatherapi.com/). 
 
 ## Features
 

@@ -1,38 +1,40 @@
-import React, { useEffect, useState } from "react";
-import { ScrollView, Dimensions } from "react-native";
+import React from "react";
+import { ScrollView } from "react-native-gesture-handler";
 import WeeklyForecastElement from "../components/WeeklyForecastElement";
 import { weatherStore } from "../stores/WeatherStore";
 import { observer } from "mobx-react";
+import { screenOrientationStore } from "../stores/ScreenOrientationStore";
+import { View } from "react-native";
 
 const WeeklyForecast = observer(() => {
-  const [orientation, setOrientation] = useState("PORTRAIT");
-
-  useEffect(() => {
-    Dimensions.addEventListener("change", ({ window: { width, height } }) => {
-      setOrientation(width > height ? "LANDSCAPE" : "PORTRAIT");
-    });
-  }, []);
-
+  const { orientation } = screenOrientationStore;
   return (
     <ScrollView
-      horizontal={orientation === "PORTRAIT"}
+      horizontal
       contentContainerStyle={{
         paddingHorizontal: 15,
-        flexDirection: orientation === "LANDSCAPE" ? "column" : "row",
         alignItems: "flex-end",
       }}
       showsHorizontalScrollIndicator={false}
     >
-      {weatherStore.weatherData?.forecast?.forecastday?.map((day, index) => (
-        <WeeklyForecastElement
-          key={index}
-          weatherCondition={day.day?.condition?.text || ""}
-          tempCelsius={Math.round(day.day?.avgtemp_c)}
-          weekday={new Date(day.date).toLocaleDateString("en-US", {
-            weekday: "long",
-          })}
-        />
-      ))}
+      <View
+        style={
+          orientation === "LANDSCAPE"
+            ? { flexDirection: "column" }
+            : { flexDirection: "row" }
+        }
+      >
+        {weatherStore.weatherData?.forecast?.forecastday?.map((day, index) => (
+          <WeeklyForecastElement
+            key={index}
+            weatherCondition={day.day?.condition?.text || ""}
+            tempCelsius={Math.round(day.day?.avgtemp_c)}
+            weekday={new Date(day.date).toLocaleDateString("en-US", {
+              weekday: "long",
+            })}
+          />
+        ))}
+      </View>
     </ScrollView>
   );
 });

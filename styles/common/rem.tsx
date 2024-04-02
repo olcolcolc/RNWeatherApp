@@ -1,6 +1,6 @@
-import { Dimensions } from "react-native";
+import { screenWidth } from "../../utils/screenDimensions";
 
-export const baseSize = Dimensions.get("window").width / 375;
+export const baseSize = screenWidth / 370;
 
 // Define rem function
 export const rem = (size: number) => baseSize * size;

@@ -1,4 +1,4 @@
-import { Platform, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import { centered, defaultTextStyle } from "../common/commonStyles";
 import { rem } from "../common/rem";
 import { theme } from "../theme/theme";

@@ -1,6 +1,7 @@
-import { Dimensions, Platform, StyleSheet, TextStyle } from "react-native";
+import { Platform, StyleSheet, TextStyle } from "react-native";
 import { theme } from "../theme/theme";
 import { rem } from "./rem";
+import { screenOrientationStore } from "../../stores/ScreenOrientationStore";
 
 const neonStyle: TextStyle = {
   textShadowColor: "#D0F0C0",
@@ -36,6 +37,13 @@ export const text = StyleSheet.create({
   },
   neon: {
     ...neonStyle,
-    fontSize: Platform.OS === "android" ? rem(220) : rem(160),
+    fontSize:
+      screenOrientationStore.orientation === "LANDSCAPE"
+        ? Platform.OS === "android"
+          ? rem(180)
+          : rem(120)
+        : Platform.OS === "android"
+        ? rem(220)
+        : rem(160),
   },
 });

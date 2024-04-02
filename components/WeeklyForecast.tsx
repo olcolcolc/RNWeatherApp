@@ -32,6 +32,7 @@ const WeeklyForecast = observer(() => {
             weekday={new Date(day.date).toLocaleDateString("en-US", {
               weekday: "long",
             })}
+            date={day.date}
           />
         ))}
       </View>

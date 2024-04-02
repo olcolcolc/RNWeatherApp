@@ -14,7 +14,7 @@ const WeeklyForecastDetailsModal = observer(() => {
         }}
       >
         <View style={{ marginTop: 50, padding: 20, backgroundColor: "white" }}>
-          <Text>Weather Details</Text>
+          <Text>{modalStore.date}</Text>
 
           <TouchableOpacity
             onPress={() => modalStore.toggleModal()}

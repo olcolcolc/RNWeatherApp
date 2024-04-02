@@ -10,11 +10,13 @@ type WeeklyForecastElementProps = {
   weatherCondition: string;
   weekday: string;
   tempCelsius: number;
+  date: string;
 };
 
 const WeeklyForecastElement: React.FC<WeeklyForecastElementProps> = observer(
-  ({ weatherCondition, tempCelsius, weekday }) => {
+  ({ weatherCondition, tempCelsius, weekday, date }) => {
     const handlePress = () => {
+      modalStore.setDate(date);
       modalStore.toggleModal();
     };
 

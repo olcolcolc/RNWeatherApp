@@ -1,4 +1,4 @@
-import { Platform, StyleSheet, TextStyle } from "react-native";
+import { Dimensions, Platform, StyleSheet, TextStyle } from "react-native";
 import { theme } from "../theme/theme";
 import { rem } from "./rem";
 
@@ -36,6 +36,6 @@ export const text = StyleSheet.create({
   },
   neon: {
     ...neonStyle,
-    fontSize: Platform.OS === "android" ? rem(200) : rem(150),
+    fontSize: Platform.OS === "android" ? rem(220) : rem(160),
   },
 });

@@ -3,22 +3,17 @@ import { WEATHER_API_KEY } from "@env";
 import axios from "axios";
 import { locationStore } from "./LocationStore";
 
-// Add a request interceptor
 axios.interceptors.request.use(
   function (config) {
-    // Log the request method and url
     console.log("request:", JSON.stringify(config, null, 2));
-    // If there are params, log them too
     if (config.params) {
       console.log("Params:", config.params);
     }
 
-    // You must return the request config
     return config;
   },
 
   function (error) {
-    // Do something with request error
     return Promise.reject(error);
   }
 );
@@ -121,7 +116,7 @@ class WeatherStore {
         `https://api.weatherapi.com/v1/forecast.json`,
         {
           params: {
-            key: WEATHER_API_KEY,
+            key: process.env.WEATHER_API_KEY,
             q: `${locationStore.latitude},${locationStore.longitude}`,
             days: 7,
             aqi: "no",
@@ -142,5 +137,4 @@ class WeatherStore {
     }
   };
 }
-// Export an instance of the store
 export const weatherStore = new WeatherStore();

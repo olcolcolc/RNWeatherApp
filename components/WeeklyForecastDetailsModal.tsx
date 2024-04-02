@@ -5,21 +5,14 @@ import { modalStore } from "../stores/ModalStore";
 import { weatherStore } from "../stores/WeatherStore";
 import weeklyForecastModal from "../styles/components/weeklyForecastModal";
 import Modal from "react-native-modal";
-import { text } from "../styles/common/texts";
 import WeatherIcon from "./WeatherIcon";
 import { Ionicons } from "@expo/vector-icons";
 import WeatherDetails from "./WeatherDetails";
-import { weeklyForecast } from "../styles/components/weeklyForecast";
 import { theme } from "../styles/theme/theme";
+import { formatWeeklyForcastDate } from "../utils/formatDate";
 
 const WeeklyForecastDetailsModal = observer(() => {
   const forecast = weatherStore.getForecastByDate(modalStore.date);
-
-  const convertedDate = new Date(modalStore.date).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
 
   return (
     <View>
@@ -45,7 +38,7 @@ const WeeklyForecastDetailsModal = observer(() => {
                 size="today"
               ></WeatherIcon>
               <Text style={weeklyForecastModal.dateHeader}>
-                {convertedDate.toString()}
+                {formatWeeklyForcastDate(modalStore.date)}
               </Text>
               <Text
                 style={{

@@ -30,17 +30,7 @@ const HomeScreen = observer(() => {
         ) : (
           <View>
             <Header />
-            <ScrollView
-              style={container.centerContainer}
-              // style={
-              //   orientation === "LANDSCAPE"
-              //         flexDirection: "row",
-              //         justifyContent: "space-around",
-              //         width: "100%",
-              //       }
-              //     : container.centerContainer
-              // }
-            >
+            <ScrollView style={container.centerContainer}>
               <TodaysWeather />
               <WeatherDetails
                 humidity={weatherStore.humidity}

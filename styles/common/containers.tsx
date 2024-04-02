@@ -13,19 +13,17 @@ export const container = StyleSheet.create({
     ...centered,
   },
   header: {
-    padding: 20,
-    height: 120,
+    padding: 15,
     backgroundColor: "inherit",
     alignItems: "flex-start",
   },
   centerContainer: {
     paddingVertical: rem(5),
   },
-
   weeklyForecastElementContainer: {
     ...centered,
     ...defaultTextStyle,
-    marginRight: 18,
+    marginRight: 5,
     marginBottom: 6,
     height: rem(180),
     width: rem(160),

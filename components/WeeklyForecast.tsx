@@ -18,11 +18,11 @@ const WeeklyForecast = observer(() => {
       showsHorizontalScrollIndicator={false}
     >
       <View
-        style={
-          orientation === "LANDSCAPE"
-            ? { flexDirection: "column" }
-            : { flexDirection: "row" }
-        }
+        style={{ flexDirection: "row" }}
+        //   orientation === "LANDSCAPE"
+        //     ? { flexDirection: "column" }
+        //     : { flexDirection: "row" }
+        // }
       >
         {weatherStore.weatherData?.forecast?.forecastday?.map((day, index) => (
           <WeeklyForecastElement

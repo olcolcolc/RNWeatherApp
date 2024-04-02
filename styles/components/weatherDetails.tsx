@@ -7,7 +7,8 @@ export const weatherDetails = (orientation: string) =>
     container: {
       justifyContent: "space-around",
       padding: 24,
-      flexDirection: orientation === "LANDSCAPE" ? "column" : "row",
+      flexDirection: "row",
+      // flexDirection: orientation === "LANDSCAPE" ? "column" : "row",
     },
     iconContainer: {
       ...centered,

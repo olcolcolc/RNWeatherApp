@@ -30,15 +30,15 @@ const HomeScreen = observer(() => {
           <View>
             <Header />
             <View
-              style={
-                orientation === "LANDSCAPE"
-                  ? {
-                      flexDirection: "row",
-                      justifyContent: "space-around",
-                      width: "100%",
-                    }
-                  : container.centerContainer
-              }
+              style={container.centerContainer}
+              // style={
+              //   orientation === "LANDSCAPE"
+              //         flexDirection: "row",
+              //         justifyContent: "space-around",
+              //         width: "100%",
+              //       }
+              //     : container.centerContainer
+              // }
             >
               <View>
                 <TodaysWeather />

@@ -3,6 +3,7 @@ import { WEATHER_API_KEY } from "@env";
 import axios from "axios";
 import { locationStore } from "./LocationStore";
 
+// Axios interceptor to log requests
 axios.interceptors.request.use(
   function (config) {
     console.log("request:", JSON.stringify(config, null, 2));

@@ -12,6 +12,7 @@ import { weatherStore } from "../stores/WeatherStore";
 import { screenOrientationStore } from "../stores/ScreenOrientationStore";
 import { text } from "../styles/common/texts";
 import { theme } from "../styles/theme/theme";
+import WeeklyForecastDetailsModal from "../components/WeeklyForecastDetailsModal";
 
 const HomeScreen = observer(() => {
   const { orientation } = screenOrientationStore;
@@ -29,7 +30,7 @@ const HomeScreen = observer(() => {
         ) : (
           <View>
             <Header />
-            <View
+            <ScrollView
               style={container.centerContainer}
               // style={
               //   orientation === "LANDSCAPE"
@@ -40,18 +41,13 @@ const HomeScreen = observer(() => {
               //     : container.centerContainer
               // }
             >
-              <View>
-                <TodaysWeather />
-              </View>
-              <View>
-                <WeatherDetails />
-              </View>
-              <View>
-                <ScrollView>
-                  <WeeklyForecast />
-                </ScrollView>
-              </View>
-            </View>
+              <TodaysWeather />
+              <WeatherDetails />
+              <ScrollView>
+                <WeeklyForecast />
+                <WeeklyForecastDetailsModal />
+              </ScrollView>
+            </ScrollView>
           </View>
         )}
       </SafeAreaView>

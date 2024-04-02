@@ -3,6 +3,7 @@ import { rem } from "../common/rem";
 export const theme = {
   colors: {
     white: "#ffffff",
+    darkGrey: "#434343",
     grey: "#808080",
     greyWithOpacity: "#80808066",
     lightGrey: "#d3d3d3",

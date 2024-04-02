@@ -42,7 +42,11 @@ const HomeScreen = observer(() => {
               // }
             >
               <TodaysWeather />
-              <WeatherDetails />
+              <WeatherDetails
+                humidity={weatherStore.humidity}
+                windKph={weatherStore.windKph}
+                sunrise={weatherStore.sunrise}
+              />
               <ScrollView>
                 <WeeklyForecast />
                 <WeeklyForecastDetailsModal />

@@ -28,6 +28,7 @@ export const weatherDetails = (orientation: string) =>
     weatherDetail: {
       color: theme.colors.white,
       fontSize: theme.fontSize.medium,
+      marginHorizontal: 20,
       ...centered,
     },
   });

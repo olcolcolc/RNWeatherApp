@@ -1,24 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { ScrollView, Dimensions } from "react-native";
+import React from "react";
+import { ScrollView } from "react-native-gesture-handler";
 import WeeklyForecastElement from "../components/WeeklyForecastElement";
 import { weatherStore } from "../stores/WeatherStore";
 import { observer } from "mobx-react";
 
 const WeeklyForecast = observer(() => {
-  const [orientation, setOrientation] = useState("PORTRAIT");
-
-  useEffect(() => {
-    Dimensions.addEventListener("change", ({ window: { width, height } }) => {
-      setOrientation(width > height ? "LANDSCAPE" : "PORTRAIT");
-    });
-  }, []);
-
   return (
     <ScrollView
-      horizontal={orientation === "PORTRAIT"}
+      horizontal
       contentContainerStyle={{
         paddingHorizontal: 15,
-        flexDirection: orientation === "LANDSCAPE" ? "column" : "row",
         alignItems: "flex-end",
       }}
       showsHorizontalScrollIndicator={false}

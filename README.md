@@ -57,6 +57,12 @@ Displays detailed weather forecast information for a specific date within a moda
    ```bash
    npx expo start
    ```
+## API Usage
+This application utilizes the Weather API from weatherapi.com. To use the API, you need to generate your API key. Create a .env file in the root folder of the project and add the following line:
+```bash
+WEATHER_API_KEY=your_api_key_here
+```
+Replace your_api_key_here with your actual API key.
 
 ## Running on a mobile device
 

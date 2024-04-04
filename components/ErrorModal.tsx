@@ -1,10 +1,9 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Button } from "react-native";
+import { View, Text, Button } from "react-native";
 import { modalStore } from "../stores/ModalStore";
 import { observer } from "mobx-react";
 import { weatherStore } from "../stores/WeatherStore";
 import Modal from "react-native-modal";
-import weeklyForecastModal from "../styles/components/modals";
 import modals from "../styles/components/modals";
 
 const ErrorModal: React.FC = observer(() => {

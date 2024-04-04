@@ -4,7 +4,6 @@ import { Ionicons } from "@expo/vector-icons";
 import { observer } from "mobx-react";
 import { ScrollView } from "react-native-gesture-handler";
 import { weatherDetails } from "../styles/components/weatherDetails";
-import { screenOrientationStore } from "../stores/ScreenOrientationStore";
 
 interface WeatherDetailsProps {
   windKph: number | null;

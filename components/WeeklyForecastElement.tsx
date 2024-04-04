@@ -17,7 +17,7 @@ const WeeklyForecastElement: React.FC<WeeklyForecastElementProps> = observer(
   ({ weatherCondition, tempCelsius, weekday, date }) => {
     const handlePress = () => {
       modalStore.setDate(date);
-      modalStore.toggleModal();
+      modalStore.toggleWeeklyForecastModalVisible();
     };
 
     return (

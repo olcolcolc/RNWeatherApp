@@ -14,6 +14,11 @@ const weeklyForecastModal = StyleSheet.create({
     fontSize: theme.fontSize.xlarge,
     marginVertical: 10,
   },
+  errorHeader: {
+    color: theme.colors.red,
+    fontSize: theme.fontSize.xlarge,
+    marginVertical: 10,
+  },
   detailsView: {
     padding: 10,
   },

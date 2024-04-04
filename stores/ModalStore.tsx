@@ -1,7 +1,8 @@
 import { makeAutoObservable } from "mobx";
 
 class ModalStore {
-  modalVisible = false;
+  weeklyForecastModalVisible = true;
+  errorModalVisible = false;
   date = "";
 
   constructor() {
@@ -12,8 +13,12 @@ class ModalStore {
     this.date = date;
   }
 
-  toggleModal() {
-    this.modalVisible = !this.modalVisible;
+  toggleWeeklyForecastModalVisible() {
+    this.weeklyForecastModalVisible = !this.weeklyForecastModalVisible;
+  }
+
+  toggleErrorModalVisible() {
+    this.errorModalVisible = !this.errorModalVisible;
   }
 }
 

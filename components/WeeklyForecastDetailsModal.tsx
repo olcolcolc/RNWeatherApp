@@ -11,18 +11,18 @@ import WeatherDetails from "./WeatherDetails";
 import { theme } from "../styles/theme/theme";
 import { formatWeeklyForcastDate } from "../utils/formatDate";
 
-const WeeklyForecastDetailsModal = observer(() => {
+const WeeklyForecastDetailsModal: React.FC = observer(() => {
   const forecast = weatherStore.getForecastByDate(modalStore.date);
 
   return (
     <View>
       <Modal
-        isVisible={modalStore.modalVisible}
-        onBackdropPress={() => modalStore.toggleModal()}
+        isVisible={modalStore.weeklyForecastModalVisible}
+        onBackdropPress={() => modalStore.toggleWeeklyForecastModalVisible()}
       >
         <View style={weeklyForecastModal.container}>
           <TouchableOpacity
-            onPress={() => modalStore.toggleModal()}
+            onPress={() => modalStore.toggleWeeklyForecastModalVisible()}
             style={weeklyForecastModal.closeButton}
           >
             <Ionicons

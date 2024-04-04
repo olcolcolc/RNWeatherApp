@@ -100,7 +100,7 @@ class WeatherStore {
   };
 
   setError = (error: string) => {
-    this.error = error;
+    this.error = "VERY BAD ERROR";
   };
 
   setLoading = (loading: boolean) => {

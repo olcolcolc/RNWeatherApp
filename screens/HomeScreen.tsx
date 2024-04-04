@@ -13,6 +13,7 @@ import { screenOrientationStore } from "../stores/ScreenOrientationStore";
 import { text } from "../styles/common/texts";
 import { theme } from "../styles/theme/theme";
 import WeeklyForecastDetailsModal from "../components/WeeklyForecastDetailsModal";
+import ErrorModal from "../components/ErrorModal";
 
 const HomeScreen = observer(() => {
   const { orientation } = screenOrientationStore;
@@ -29,6 +30,7 @@ const HomeScreen = observer(() => {
           </View>
         ) : (
           <View>
+            <ErrorModal />
             <Header />
             <ScrollView style={container.centerContainer}>
               <TodaysWeather />

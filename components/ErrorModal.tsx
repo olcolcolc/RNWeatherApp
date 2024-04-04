@@ -4,24 +4,23 @@ import { modalStore } from "../stores/ModalStore";
 import { observer } from "mobx-react";
 import { weatherStore } from "../stores/WeatherStore";
 import Modal from "react-native-modal";
-import weeklyForecastModal from "../styles/components/weeklyForecastModal";
+import weeklyForecastModal from "../styles/components/modals";
+import modals from "../styles/components/modals";
 
 const ErrorModal: React.FC = observer(() => {
   return (
     <View>
       <Modal
-        isVisible={true}
+        isVisible={modalStore.errorModalVisible}
         onBackdropPress={() => modalStore.toggleErrorModalVisible()}
       >
-        <View style={weeklyForecastModal.container}>
-          <View style={weeklyForecastModal.container}>
-            <Text style={weeklyForecastModal.dateHeader}>Error</Text>
-            <Text style={weeklyForecastModal.detail}>{weatherStore.error}</Text>
-            <Button
-              title={"Close"}
-              onPress={() => modalStore.toggleErrorModalVisible()}
-            />
-          </View>
+        <View style={modals.container}>
+          <Text style={modals.errorHeader}>Error</Text>
+          <Text style={modals.detail}>{weatherStore.error}</Text>
+          <Button
+            title={"Close"}
+            onPress={() => modalStore.toggleErrorModalVisible()}
+          />
         </View>
       </Modal>
     </View>

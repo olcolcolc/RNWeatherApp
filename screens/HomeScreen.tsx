@@ -5,7 +5,6 @@ import { observer } from "mobx-react-lite";
 import { StatusBar } from "expo-status-bar";
 import { container } from "../styles/common/containers";
 import Header from "../components/Header";
-import TodaysWeather from "../components/TodaysWeather";
 import WeatherDetails from "../components/WeatherDetails";
 import WeeklyForecast from "../components/WeeklyForecast";
 import { weatherStore } from "../stores/WeatherStore";
@@ -14,6 +13,7 @@ import { text } from "../styles/common/texts";
 import { theme } from "../styles/theme/theme";
 import WeeklyForecastDetailsModal from "../components/WeeklyForecastDetailsModal";
 import ErrorModal from "../components/ErrorModal";
+import MainPanel from "../components/MainPanel";
 
 const HomeScreen = observer(() => {
   const { orientation } = screenOrientationStore;
@@ -30,10 +30,14 @@ const HomeScreen = observer(() => {
           </View>
         ) : (
           <View>
-            {/* <ErrorModal /> */}
+            <ErrorModal />
             <Header />
             <ScrollView style={container.centerContainer}>
-              <TodaysWeather />
+              <MainPanel
+                weatherCondition={weatherStore.weatherCondition}
+                tempCelsius={weatherStore.tempCelsius}
+                isDay={weatherStore.isDay}
+              />
               <WeatherDetails
                 humidity={weatherStore.humidity}
                 windKph={weatherStore.windKph}

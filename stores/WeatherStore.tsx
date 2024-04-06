@@ -22,6 +22,7 @@ axios.interceptors.request.use(
 interface WeatherData {
   current?: {
     temp_c: number;
+    is_day: number;
     condition: {
       text: string;
     };
@@ -65,6 +66,7 @@ class WeatherStore {
   weatherData: WeatherData | null = null;
   error = "";
   loading = true;
+  isDay: number | null = 0;
   tempCelsius: number | null = 0;
   weatherCondition: string | null = "";
   humidity: number | null = 0;
@@ -89,6 +91,7 @@ class WeatherStore {
     this.weatherData = weatherData;
 
     if (weatherData?.current) {
+      this.isDay = weatherData.current.is_day;
       this.tempCelsius = Number(weatherData.current.temp_c.toFixed(0));
       this.weatherCondition = weatherData.current.condition.text;
       this.humidity = weatherData.current.humidity;
@@ -96,6 +99,7 @@ class WeatherStore {
       this.sunrise =
         weatherData.forecast?.forecastday[0]?.astro?.sunrise ?? null;
     } else {
+      this.isDay = null;
       this.tempCelsius = null;
       this.weatherCondition = null;
       this.humidity = null;

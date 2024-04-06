@@ -8,10 +8,11 @@ import { observer } from "mobx-react-lite";
 type MainPanelProps = {
   weatherCondition: string | null;
   tempCelsius: number | null;
+  isDay: number | null;
 };
 
 const MainPanel = observer(
-  ({ weatherCondition, tempCelsius }: MainPanelProps) => {
+  ({ weatherCondition, tempCelsius, isDay }: MainPanelProps) => {
     const neonAnim = useRef(new Animated.Value(0)).current;
 
     useEffect(() => {
@@ -36,10 +37,12 @@ const MainPanel = observer(
       Animated.loop(animation, { iterations: 3 }).start();
     }, [neonAnim]);
 
+    const displayCondition = isDay !== 1 ? "moon" : weatherCondition;
+
     return (
       <View style={container.container}>
         <Animated.Text style={{ opacity: neonAnim }}>
-          <WeatherIcon name={weatherCondition} size="today" />
+          <WeatherIcon name={displayCondition} size="main" />
         </Animated.Text>
         <Text style={text.todayTemp}>{tempCelsius}°C</Text>
         <Text style={text.dark}>{weatherCondition}</Text>

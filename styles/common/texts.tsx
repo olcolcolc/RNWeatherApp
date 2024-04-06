@@ -12,7 +12,7 @@ const neonStyle: TextStyle = {
 export const text = StyleSheet.create({
   light: {
     color: theme.colors.white,
-    fontSize: theme.fontSize.medium,
+    fontSize: theme.fontSize.small,
   },
   dark: {
     color: theme.colors.grey,
@@ -20,14 +20,14 @@ export const text = StyleSheet.create({
   },
   todayTemp: {
     color: theme.colors.white,
-    fontSize: theme.fontSize.xlarge,
-    padding: 10,
+    fontSize: theme.fontSize.xxxlarge,
+    padding: 5,
     textAlign: "center",
   },
   loading: {
     width: "100%",
     color: theme.colors.white,
-    fontSize: theme.fontSize.xxlarge,
+    fontSize: theme.fontSize.xxxlarge,
     padding: 18,
     ...neonStyle,
   },

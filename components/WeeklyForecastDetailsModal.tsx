@@ -3,7 +3,6 @@ import { Text, TouchableOpacity, View } from "react-native";
 import { observer } from "mobx-react";
 import { modalStore } from "../stores/ModalStore";
 import { weatherStore } from "../stores/WeatherStore";
-import weeklyForecastModal from "../styles/components/modals";
 import Modal from "react-native-modal";
 import WeatherIcon from "./WeatherIcon";
 import { Ionicons } from "@expo/vector-icons";

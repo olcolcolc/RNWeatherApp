@@ -1,7 +1,7 @@
 import { makeAutoObservable } from "mobx";
 
 class ModalStore {
-  weeklyForecastModalVisible = true;
+  weeklyForecastModalVisible = false;
   errorModalVisible = false;
   date = "";
 

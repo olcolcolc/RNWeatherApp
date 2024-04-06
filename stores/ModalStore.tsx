@@ -1,4 +1,5 @@
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable, reaction } from "mobx";
+import { weatherStore } from "./WeatherStore";
 
 class ModalStore {
   weeklyForecastModalVisible = false;
@@ -7,6 +8,13 @@ class ModalStore {
 
   constructor() {
     makeAutoObservable(this);
+
+    reaction(
+      () => weatherStore.error,
+      (error) => {
+        this.errorModalVisible = error !== "";
+      }
+    );
   }
 
   setDate(date: string) {

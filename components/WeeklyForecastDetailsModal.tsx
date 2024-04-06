@@ -19,6 +19,8 @@ const WeeklyForecastDetailsModal: React.FC = observer(() => {
       <Modal
         isVisible={modalStore.weeklyForecastModalVisible}
         onBackdropPress={() => modalStore.toggleWeeklyForecastModalVisible()}
+        animationIn="slideInUp"
+        animationOut="slideOutDown"
       >
         <View style={modals.container}>
           <TouchableOpacity

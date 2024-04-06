@@ -6,7 +6,7 @@ const weeklyForecastModal = StyleSheet.create({
   container: {
     paddingVertical: 30,
     borderRadius: 30,
-    backgroundColor: "#434343",
+    backgroundColor: theme.colors.darkGrey,
     ...centered,
   },
   dateHeader: {

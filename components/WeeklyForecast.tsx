@@ -5,6 +5,7 @@ import { weatherStore } from "../stores/WeatherStore";
 import { observer } from "mobx-react";
 import { screenOrientationStore } from "../stores/ScreenOrientationStore";
 import { View } from "react-native";
+import { getShortWeekday } from "../utils/formatDate";
 
 const WeeklyForecast = observer(() => {
   const { orientation } = screenOrientationStore;
@@ -23,9 +24,7 @@ const WeeklyForecast = observer(() => {
             key={index}
             weatherCondition={day.day?.condition?.text || ""}
             tempCelsius={Math.round(day.day?.avgtemp_c)}
-            weekday={new Date(day.date).toLocaleDateString("en-US", {
-              weekday: "long",
-            })}
+            weekday={getShortWeekday(day.date)}
             date={day.date}
           />
         ))}

@@ -27,9 +27,9 @@ export const container = StyleSheet.create({
     flex: 3,
     marginRight: 5,
     height: rem(180),
-    width: rem(160),
+    width: rem(100),
     opacity: 0.8,
-    backgroundColor: theme.colors.grey,
-    borderRadius: 20,
+    backgroundColor: theme.colors.darkGrey,
+    borderRadius: 50,
   },
 });

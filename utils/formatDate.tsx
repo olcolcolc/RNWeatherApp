@@ -13,3 +13,7 @@ export const formatCurrentDate = (date: Date) => {
     day: "numeric",
   });
 };
+
+export const getShortWeekday = (date: string) => {
+  return new Date(date).toLocaleString("en-US", { weekday: "short" });
+};

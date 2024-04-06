@@ -23,10 +23,9 @@ const WeeklyForecastElement: React.FC<WeeklyForecastElementProps> = observer(
     return (
       <TouchableOpacity onPress={handlePress}>
         <View style={container.weeklyForecastElementContainer}>
+          <Text style={weeklyForecast.weekday}>{weekday}</Text>
           <WeatherIcon name={weatherCondition} size="weekday" />
           <Text style={weeklyForecast.temp}>{tempCelsius} °C</Text>
-          <Text style={weeklyForecast.weekday}>{weekday}</Text>
-          <Text style={weeklyForecast.conditionText}>{weatherCondition}</Text>
         </View>
       </TouchableOpacity>
     );

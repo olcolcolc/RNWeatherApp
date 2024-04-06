@@ -1,6 +1,6 @@
-# RNWeather Forecast App
+<div align="center"><h1>🌥️ RNWeather Forecast App ☀️</h1>
 
-This is a weather forecast application built with React Native and Expo, developed in TypeScript. It utilizes the MobX state management library to effectively manage application state. Application utilizes the Weather API from [weatherapi.com](https://www.weatherapi.com/). 
+This is a weather forecast application built with React Native and Expo, developed in TypeScript. It utilizes the MobX state management library to effectively manage application state. Application utilizes the Weather API from [weatherapi.com](https://www.weatherapi.com/). </div>
 
 ## Features
 
@@ -10,12 +10,13 @@ This is a weather forecast application built with React Native and Expo, develop
 - Detailed daily forecast
 - Weather conditions represented with icons
 
+<ul>
 ## Components
 
 ### WeatherIcon
 Displays a weather icon (from Ionicons library) based on the provided weather condition. 
 #### Props
-- `name`: A string representing the weather condition. This can be any of the following: "sun", "overcast", "clear", "rain", "sleet", "drizzle", "snow", "freeze", "blizzard", "ice", "cloud", "fog", "mist", "partly cloudy", "thunder". If the weather condition doesn't match any of these, a default icon is shown.
+- `name`: A string representing the weather condition. This can be any of the following: "sun", "overcast", "clear", "rain", "sleet", "drizzle", "snow", "freeze", "blizzard", "ice", "cloud", "fog", "mist", "partly cloudy", "thunder", "moon". If the weather condition doesn't match any of these, a default icon is shown.
 - `size`: A string that can be either "today" or "weekday". This determines the size of the icon.
 
 ### Header
@@ -28,8 +29,14 @@ Displays detailed weather information including wind speed, humidity, and sunris
 - `windKph`: The wind speed in kilometers per hour. Can be `null`.
 - `humidity`: The humidity percentage. Can be `null`.
 - `sunrise`: The sunrise time as a string. Can be `null`.
-### TodaysWeather
-Displays the current weather condition, including the weather icon and temperature. It's an observer component from `mobx-react-lite`, which means it will automatically re-render when the observed `weatherStore` changes to get the current weather condition and temperature.
+
+### MainPanel
+Displays weather information. It uses the MobX library for state management and is decorated with the observer function to react to changes in the observable state. Used in HomeScreen and WeeklyForecastDetailsModal
+
+#### Props
+- `weatherCondition`: the current weather condition. This could be any string like "Sunny", "Rainy", etc. If the value is null, it means the weather condition is not available.
+- `tempCelsius`:  the current temperature in Celsius. If the value is null, it means the temperature is not available.
+- `isDay`: A flag indicating whether it's day or night. 1 means it's day, 0 means it's night. If the value is null, it means this information is not available.
 
 ### WeeklyForecastElement
 Displays a single element of the weekly weather forecast.
@@ -44,6 +51,10 @@ Displays a scrollable horizontal list of weekly weather forecast elements.
 
 ### WeeklyForecastDetailsModal
 Displays detailed weather forecast information for a specific date within a modal. It provides information such as weather condition, temperature, humidity, wind speed, sunrise time, and chances of snow or rain.
+
+### ErrorModal
+Displays a modal with an error message. The visibility of the modal is controlled by the errorModalVisible property of the modalStore. When the modal's backdrop is pressed or the "Close" button is clicked, the toggleErrorModalVisible method of the modalStore is called to hide the modal. The error message displayed in the modal is the error property of the weatherStore.
+</ul>
 
 ## Installation
 

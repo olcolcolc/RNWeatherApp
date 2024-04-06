@@ -12,6 +12,8 @@ const ErrorModal: React.FC = observer(() => {
       <Modal
         isVisible={modalStore.errorModalVisible}
         onBackdropPress={() => modalStore.toggleErrorModalVisible()}
+        animationIn="slideInUp"
+        animationOut="slideOutDown"
       >
         <View style={modals.container}>
           <Text style={modals.errorHeader}>Error</Text>

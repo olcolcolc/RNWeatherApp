@@ -10,6 +10,7 @@ export const weeklyForecast = StyleSheet.create({
   weekday: {
     ...defaultTextStyle,
     fontSize: theme.fontSize.medium,
+    padding: 5,
   },
   conditionText: {
     ...defaultTextStyle,

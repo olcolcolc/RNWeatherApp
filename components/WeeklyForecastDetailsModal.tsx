@@ -4,12 +4,11 @@ import { observer } from "mobx-react";
 import { modalStore } from "../stores/ModalStore";
 import { weatherStore } from "../stores/WeatherStore";
 import Modal from "react-native-modal";
-import WeatherIcon from "./WeatherIcon";
 import { Ionicons } from "@expo/vector-icons";
 import WeatherDetails from "./WeatherDetails";
-import { theme } from "../styles/theme/theme";
 import { formatWeeklyForcastDate } from "../utils/formatDate";
 import modals from "../styles/components/modals";
+import MainPanel from "./MainPanel";
 
 const WeeklyForecastDetailsModal: React.FC = observer(() => {
   const forecast = weatherStore.getForecastByDate(modalStore.date);
@@ -35,21 +34,14 @@ const WeeklyForecastDetailsModal: React.FC = observer(() => {
 
           {forecast && (
             <>
-              <WeatherIcon
-                name={forecast.day.condition.text}
-                size="today"
-              ></WeatherIcon>
               <Text style={modals.dateHeader}>
                 {formatWeeklyForcastDate(modalStore.date)}
               </Text>
-              <Text
-                style={{
-                  fontSize: theme.fontSize.medium,
-                  color: theme.colors.white,
-                }}
-              >
-                {forecast.day.condition.text}
-              </Text>
+              <MainPanel
+                weatherCondition={forecast.day.condition.text}
+                tempCelsius={Math.round(forecast.day.avgtemp_c)}
+              />
+
               <WeatherDetails
                 humidity={forecast.day.avghumidity}
                 windKph={forecast.day.maxwind_kph}

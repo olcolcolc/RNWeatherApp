@@ -19,7 +19,6 @@ axios.interceptors.request.use(
   }
 );
 
-// Define the structure of the weather data
 interface WeatherData {
   current?: {
     temp_c: number;
@@ -30,28 +29,35 @@ interface WeatherData {
     wind_kph: number;
   };
   forecast?: {
-    forecastday: [
-      {
-        date: string;
-        day: {
-          maxtemp_c: number;
-          mintemp_c: number;
-          avgtemp_c: number;
-          maxwind_kph: number;
-          avghumidity: number;
-          daily_will_it_rain: number;
-          daily_chance_of_rain: number;
-          daily_will_it_snow: number;
-          daily_chance_of_snow: number;
-          condition: {
-            text: string;
-          };
-        };
-        astro: { sunrise: string };
-      }
-    ];
+    forecastday: ForecastDay[];
   };
-  location?: { country: string; name: string; lat: number; lon: number };
+  location?: {
+    country: string;
+    name: string;
+    lat: number;
+    lon: number;
+  };
+}
+
+interface ForecastDay {
+  date: string;
+  day: {
+    maxtemp_c: number;
+    mintemp_c: number;
+    avgtemp_c: number;
+    maxwind_kph: number;
+    avghumidity: number;
+    daily_will_it_rain: number;
+    daily_chance_of_rain: number;
+    daily_will_it_snow: number;
+    daily_chance_of_snow: number;
+    condition: {
+      text: string;
+    };
+  };
+  astro: {
+    sunrise: string;
+  };
 }
 
 class WeatherStore {
@@ -59,11 +65,16 @@ class WeatherStore {
   weatherData: WeatherData | null = null;
   error = "";
   loading = true;
-  tempCelsius: number | null = null;
-  weatherCondition: string | null = null;
-  humidity: number | null = null;
-  windKph: number | null = null;
-  sunrise: string | null = null;
+  tempCelsius: number | null = 0;
+  weatherCondition: string | null = "";
+  humidity: number | null = 0;
+  windKph: number | null = 0;
+  sunrise: string | null = "";
+
+  // Cache properties
+  private cachedWeatherData: WeatherData | null = null;
+  private cacheTimestamp: number | null = null;
+  private cacheDuration = 10 * 60 * 1000; // Cache duration (10 minutes)
 
   constructor() {
     // Make properties observable
@@ -107,35 +118,52 @@ class WeatherStore {
     this.loading = loading;
   };
 
-  // Fetch weather data from the API
+  // Check if cached weather data is still valid
+  private isCachedWeatherDataValid = (): boolean => {
+    if (!this.cachedWeatherData || !this.cacheTimestamp) return false;
+    return Date.now() - this.cacheTimestamp < this.cacheDuration;
+  };
+
+  // Api call to fetch weather data
+  private weatherApiCall = async () => {
+    return axios.get(`https://api.weatherapi.com/v1/forecast.json`, {
+      params: {
+        key: WEATHER_API_KEY,
+        q: `${locationStore.latitude},${locationStore.longitude}`,
+        days: 7,
+        aqi: "no",
+        alerts: "no",
+      },
+    });
+  };
+
   fetchWeatherData = async () => {
     try {
       this.setError("");
       this.setLoading(true);
-
-      const response = await axios.get(
-        `https://api.weatherapi.com/v1/forecast.json`,
-        {
-          params: {
-            key: process.env.WEATHER_API_KEY,
-            q: `${locationStore.latitude},${locationStore.longitude}`,
-            days: 7,
-            aqi: "no",
-            alerts: "no",
-          },
-        }
-      );
-
+      // Check if cached weather data is still valid
+      if (this.isCachedWeatherDataValid()) {
+        this.setWeatherData(this.cachedWeatherData);
+        return;
+      }
+      // If not, execute the API call
+      const response = await this.weatherApiCall();
+      // If response is successful, update the weather data and cache it
       if (response.status === 200) {
         this.setWeatherData(response.data);
+        this.cachedWeatherData = response.data;
+        //If the response fail, set an error message
       } else {
-        this.setError("Failed to fetch weather data");
+        this.setError(
+          `Failed to fetch weather data. Status: ${response.status}`
+        );
       }
     } catch (error) {
-      this.setError("Failed to fetch weather data");
+      this.setError(`Failed to fetch weather data. Error: ${error}`);
     } finally {
       this.setLoading(false);
     }
   };
 }
+
 export const weatherStore = new WeatherStore();

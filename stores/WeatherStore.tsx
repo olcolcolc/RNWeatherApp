@@ -59,7 +59,7 @@ class WeatherStore {
   weatherData: WeatherData | null = null;
   error = "";
   loading = true;
-  tempCelsius: string | null = null;
+  tempCelsius: number | null = null;
   weatherCondition: string | null = null;
   humidity: number | null = null;
   windKph: number | null = null;
@@ -78,7 +78,7 @@ class WeatherStore {
     this.weatherData = weatherData;
 
     if (weatherData?.current) {
-      this.tempCelsius = weatherData.current.temp_c.toFixed(0);
+      this.tempCelsius = Number(weatherData.current.temp_c.toFixed(0));
       this.weatherCondition = weatherData.current.condition.text;
       this.humidity = weatherData.current.humidity;
       this.windKph = weatherData.current.wind_kph;

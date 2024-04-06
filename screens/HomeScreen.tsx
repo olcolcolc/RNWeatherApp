@@ -30,7 +30,7 @@ const HomeScreen = observer(() => {
           </View>
         ) : (
           <View>
-            <ErrorModal />
+            {/* <ErrorModal /> */}
             <Header />
             <ScrollView style={container.centerContainer}>
               <TodaysWeather />

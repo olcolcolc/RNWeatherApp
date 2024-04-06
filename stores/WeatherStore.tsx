@@ -128,7 +128,7 @@ class WeatherStore {
   private weatherApiCall = async () => {
     return axios.get(`https://api.weatherapi.com/v1/forecast.json`, {
       params: {
-        key: WEATHER_API_KEY,
+        key: process.env.WEATHER_API_KEY,
         q: `${locationStore.latitude},${locationStore.longitude}`,
         days: 7,
         aqi: "no",

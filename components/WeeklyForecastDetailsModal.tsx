@@ -40,6 +40,7 @@ const WeeklyForecastDetailsModal: React.FC = observer(() => {
               <MainPanel
                 weatherCondition={forecast.day.condition.text}
                 tempCelsius={Math.round(forecast.day.avgtemp_c)}
+                isDay={1}
               />
 
               <WeatherDetails

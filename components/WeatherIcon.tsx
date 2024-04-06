@@ -5,7 +5,7 @@ import { theme } from "../styles/theme/theme";
 
 interface WeatherIconProps {
   name: string | null;
-  size: "today" | "weekday";
+  size: "main" | "weekday";
 }
 
 const weatherConditions = {
@@ -31,14 +31,15 @@ const weatherConditions = {
     keywords: ["partly cloudy"],
   },
   "flash-outline": { color: theme.colors.yellow, keywords: ["thunder"] },
+  "moon-outline": { color: theme.colors.white, keywords: ["night"] },
 };
 
 const WeatherIcon: React.FC<WeatherIconProps> = ({ name, size }) => {
   const lowerName = name?.toLowerCase();
 
   // Default icon
-  let iconName: keyof typeof weatherConditions = "partly-sunny-outline";
-  let iconColor: string = weatherConditions["partly-sunny-outline"].color;
+  let iconName: keyof typeof weatherConditions = "moon-outline";
+  let iconColor: string = weatherConditions["moon-outline"].color;
 
   for (const [icon, { color, keywords }] of Object.entries(weatherConditions)) {
     if (
@@ -50,13 +51,14 @@ const WeatherIcon: React.FC<WeatherIconProps> = ({ name, size }) => {
     }
   }
 
-  const iconSize = size === "today" ? 160 : 50;
+  const iconSize = size === "main" ? 160 : 50;
+
   return (
     <Ionicons
       name={iconName}
       size={iconSize}
       color={iconColor}
-      style={size === "today" ? text.neon : undefined}
+      style={size === "main" ? text.neon : undefined}
     />
   );
 };

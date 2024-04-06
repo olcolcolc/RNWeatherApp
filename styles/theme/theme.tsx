@@ -11,7 +11,7 @@ export const theme = {
     red: "#ff0000",
     silver: "#C0C0C0",
     lightblue: "#add8e6",
-    yellow: "#ffff00",
+    yellow: "#FFD700",
   },
   fontSize: {
     small: rem(14),

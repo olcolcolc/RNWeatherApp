@@ -40,10 +40,10 @@ export const text = StyleSheet.create({
     fontSize:
       screenOrientationStore.orientation === "LANDSCAPE"
         ? Platform.OS === "android"
-          ? rem(180)
+          ? rem(170)
           : rem(120)
         : Platform.OS === "android"
-        ? rem(220)
+        ? rem(210)
         : rem(160),
   },
 });

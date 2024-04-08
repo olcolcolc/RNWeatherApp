@@ -10,7 +10,6 @@ This is a weather forecast application built with React Native and Expo, develop
 - Detailed daily forecast
 - Weather conditions represented with icons
 
-<ul>
 ## Components
 
 ### WeatherIcon
@@ -54,7 +53,6 @@ Displays detailed weather forecast information for a specific date within a moda
 
 ### ErrorModal
 Displays a modal with an error message. The visibility of the modal is controlled by the errorModalVisible property of the modalStore. When the modal's backdrop is pressed or the "Close" button is clicked, the toggleErrorModalVisible method of the modalStore is called to hide the modal. The error message displayed in the modal is the error property of the weatherStore.
-</ul>
 
 ## Installation
 

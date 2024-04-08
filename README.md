@@ -24,9 +24,9 @@ Displays the current location and date.
 ### WeatherDetails
 Displays detailed weather information including wind speed, humidity, and sunrise time.
 #### Props:
-- `windKph`: The wind speed in kilometers per hour. Can be `null`.
-- `humidity`: The humidity percentage. Can be `null`.
-- `sunrise`: The sunrise time as a string. Can be `null`.
+- `windKph`: The wind speed in kilometers per hour.
+- `humidity`: The humidity percentage.
+- `sunrise`: The sunrise time as a string.
 
 ### MainPanel
 Displays weather information. It uses the MobX library for state management and is decorated with the observer function to react to changes in the observable state. Used in HomeScreen and WeeklyForecastDetailsModal

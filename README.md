@@ -14,36 +14,34 @@ This is a weather forecast application built with React Native and Expo, develop
 
 ### WeatherIcon
 Displays a weather icon (from Ionicons library) based on the provided weather condition. 
-#### Props
-- `name`: A string representing the weather condition. This can be any of the following: "sun", "overcast", "clear", "rain", "sleet", "drizzle", "snow", "freeze", "blizzard", "ice", "cloud", "fog", "mist", "partly cloudy", "thunder", "moon". If the weather condition doesn't match any of these, a default icon is shown.
-- `size`: A string that can be either "today" or "weekday". This determines the size of the icon.
+#### Props:
+- `name` - A string representing the weather condition. This can be any of the following: "sun", "overcast", "clear", "rain", "sleet", "drizzle", "snow", "freeze", "blizzard", "ice", "cloud", "fog", "mist", "partly cloudy", "thunder", "moon". If the weather condition doesn't match any of these, a default icon is shown.
+- `size` - A string that can be either "today" or "weekday". This determines the size of the icon.
 
 ### Header
 Displays the current location and date.
 
 ### WeatherDetails
 Displays detailed weather information including wind speed, humidity, and sunrise time.
-
-#### Props
+#### Props:
 - `windKph`: The wind speed in kilometers per hour. Can be `null`.
 - `humidity`: The humidity percentage. Can be `null`.
 - `sunrise`: The sunrise time as a string. Can be `null`.
 
 ### MainPanel
 Displays weather information. It uses the MobX library for state management and is decorated with the observer function to react to changes in the observable state. Used in HomeScreen and WeeklyForecastDetailsModal
-
-#### Props
-- `weatherCondition`: the current weather condition. This could be any string like "Sunny", "Rainy", etc. If the value is null, it means the weather condition is not available.
-- `tempCelsius`:  the current temperature in Celsius. If the value is null, it means the temperature is not available.
-- `isDay`: A flag indicating whether it's day or night. 1 means it's day, 0 means it's night. If the value is null, it means this information is not available.
+#### Props:
+- `weatherCondition` - the current weather condition. This could be any string like "Sunny", "Rainy", etc. If the value is null, it means the weather condition is not available.
+- `tempCelsius` -  the current temperature in Celsius. If the value is null, it means the temperature is not available.
+- `isDay` - A flag indicating whether it's day or night. 1 means it's day, 0 means it's night. If the value is null, it means this information is not available.
 
 ### WeeklyForecastElement
 Displays a single element of the weekly weather forecast.
-#### Props
-- `weatherCondition`: The weather condition as a string.
-- `weekday`: The day of the week as a string.
-- `tempCelsius`: The temperature in Celsius as a number.
-- `date`: The date as a string. On click displays `WeatherForecastDetailsModal` with weather details of a specific day.
+#### Props:
+- `weatherCondition` - The weather condition as a string.
+- `weekday` - The day of the week as a string.
+- `tempCelsius` - The temperature in Celsius as a number.
+- `date` - The date as a string. On click displays `WeatherForecastDetailsModal` with weather details of a specific day.
 
 ### WeeklyForecast
 Displays a scrollable horizontal list of weekly weather forecast elements.

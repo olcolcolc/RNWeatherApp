@@ -1,4 +1,3 @@
-import React from "react";
 import { View, ActivityIndicator, ScrollView, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { observer } from "mobx-react-lite";

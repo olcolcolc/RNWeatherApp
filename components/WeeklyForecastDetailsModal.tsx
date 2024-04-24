@@ -1,4 +1,3 @@
-import React from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { observer } from "mobx-react";
 import { modalStore } from "../stores/ModalStore";
@@ -9,6 +8,20 @@ import WeatherDetails from "./WeatherDetails";
 import { formatWeeklyForcastDate } from "../utils/formatDate";
 import modals from "../styles/components/modals";
 import MainPanel from "./MainPanel";
+
+interface DetailProps {
+  label: string;
+  value: number | string | null;
+  unit?: string;
+}
+
+const Detail = ({ label, value, unit }: DetailProps) =>
+  value !== null && (
+    <Text style={modals.detail}>
+      {label}: {value}
+      {unit}
+    </Text>
+  );
 
 const WeeklyForecastDetailsModal: React.FC = observer(() => {
   const forecast = weatherStore.getForecastByDate(modalStore.date);
@@ -49,22 +62,29 @@ const WeeklyForecastDetailsModal: React.FC = observer(() => {
                 sunrise={forecast.astro.sunrise}
               />
               <View style={modals.detailsView}>
-                <Text style={modals.detail}>
-                  Min Temp: {forecast.day.mintemp_c} °C
-                </Text>
-                <Text style={modals.detail}>
-                  Max Temp: {forecast.day.maxtemp_c} °C
-                </Text>
-
+                <Detail
+                  label="Min Temp"
+                  value={forecast.day.mintemp_c}
+                  unit=" °C"
+                />
+                <Detail
+                  label="Max Temp"
+                  value={forecast.day.maxtemp_c}
+                  unit=" °C"
+                />
                 {forecast.day.daily_will_it_snow === 1 && (
-                  <Text style={modals.detail}>
-                    Chance of snow: {forecast.day.daily_chance_of_snow} %
-                  </Text>
+                  <Detail
+                    label="Chance of snow"
+                    value={forecast.day.daily_chance_of_snow}
+                    unit=" %"
+                  />
                 )}
                 {forecast.day.daily_will_it_rain === 1 && (
-                  <Text style={modals.detail}>
-                    Chance of rain: {forecast.day.daily_chance_of_rain} %
-                  </Text>
+                  <Detail
+                    label="Chance of rain"
+                    value={forecast.day.daily_chance_of_rain}
+                    unit=" %"
+                  />
                 )}
               </View>
             </>

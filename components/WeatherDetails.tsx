@@ -1,9 +1,8 @@
-import React from "react";
-import { Text, View } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { View } from "react-native";
 import { observer } from "mobx-react";
 import { ScrollView } from "react-native-gesture-handler";
 import { weatherDetails } from "../styles/components/weatherDetails";
+import Detail from "./Detail";
 
 interface WeatherDetailsProps {
   windKph: number | null;
@@ -16,24 +15,9 @@ const WeatherDetails = observer(
     return (
       <ScrollView>
         <View style={weatherDetails.mainContainer}>
-          <View style={weatherDetails.container}>
-            <View style={weatherDetails.iconContainer}>
-              <Ionicons name="leaf-outline" style={weatherDetails.icon} />
-            </View>
-            <Text style={weatherDetails.weatherDetail}>{windKph} km/h</Text>
-          </View>
-          <View style={weatherDetails.container}>
-            <View style={weatherDetails.iconContainer}>
-              <Ionicons name="water-outline" style={weatherDetails.icon} />
-            </View>
-            <Text style={weatherDetails.weatherDetail}>{humidity} %</Text>
-          </View>
-          <View style={weatherDetails.container}>
-            <View style={weatherDetails.iconContainer}>
-              <Ionicons name="sunny-outline" style={weatherDetails.icon} />
-            </View>
-            <Text style={weatherDetails.weatherDetail}>{sunrise}</Text>
-          </View>
+          <Detail iconName="leaf-outline" value={windKph} unit=" km/h" />
+          <Detail iconName="water-outline" value={humidity} unit=" %" />
+          <Detail iconName="sunny-outline" value={sunrise} />
         </View>
       </ScrollView>
     );

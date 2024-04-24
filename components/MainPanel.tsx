@@ -1,9 +1,9 @@
-import React, { useEffect, useRef } from "react";
 import { View, Text, Animated } from "react-native";
 import { text } from "../styles/common/texts";
 import { container } from "../styles/common/containers";
 import WeatherIcon from "./WeatherIcon";
 import { observer } from "mobx-react-lite";
+import { useEffect, useRef } from "react";
 
 type MainPanelProps = {
   weatherCondition: string | null;

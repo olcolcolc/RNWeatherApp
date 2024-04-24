@@ -1,4 +1,3 @@
-import React from "react";
 import { Text, View } from "react-native";
 import { text } from "../styles/common/texts";
 import { container } from "../styles/common/containers";

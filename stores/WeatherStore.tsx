@@ -74,7 +74,7 @@ class WeatherStore {
   sunrise: string | null = "";
 
   // Cache properties
-  private cachedWeatherData: WeatherData | null = null;
+  private cachedWeatherData: Partial<WeatherData> = {};
   private cacheTimestamp: number | null = null;
   private cacheDuration = 10 * 60 * 1000; // Cache duration (10 minutes)
 
@@ -87,7 +87,7 @@ class WeatherStore {
   }
 
   // Action methods to update observable properties
-  setWeatherData = (weatherData: WeatherData | null) => {
+  setWeatherData = (weatherData: Partial<WeatherData>) => {
     this.weatherData = weatherData;
 
     if (weatherData?.current) {
